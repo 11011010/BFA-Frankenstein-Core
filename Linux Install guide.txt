@@ -1,5 +1,5 @@
 #General requirements ( needs root )
-Tested on Ubuntu 22.04
+needs seriuos update.
 
 apt-get update
 
