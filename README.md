@@ -10,7 +10,7 @@
 * Hopefully Most complete Bfa source
 
 The goal of the project is to reproduce the World of Warcraft© game world in a mostly Blizzlike way and as similar as possible to the official game,
-but with improvments such as balancing and low level scaling.
+but with improvments such as balancing and better low level scaling.
 
 We have joined with a support team to mange the server, the support team and dev team are two different groups.
 
