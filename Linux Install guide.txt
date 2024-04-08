@@ -1,0 +1,63 @@
+#General requirements ( needs root )
+Tested on Ubuntu 22.04
+
+apt-get update
+
+#Install required software
+apt-get install git clang cmake make gcc g++ libmariadbclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev mariadb-server p7zip libmariadb-client-lgpl-dev-compat bzip2
+
+#Install Boost 1.67
+#Switch to home directory
+cd
+
+#Download Boost 1.67 source
+wget https://sourceforge.net/projects/boost/files/boost/1.67.0/boost_1_67_0.tar.bz2
+
+#Unpack it
+tar -xvf boost_1_67_0.tar.bz2
+
+#Change directory
+cd boost_1_67_0
+
+#Create bootstrap
+./bootstrap.sh
+
+#Install Boost 1.67. Replace cores with the number of cores you like to use ( for Ex. -j$4 )
+#This will take some time depending on youer hardware so take a coffee, walk the dog or whatever you like.
+./b2 --with=all -j$(cores) install
+
+#Create a normal user for the server for Ex. adduser trinityuser
+adduser your_username
+
+#Switch role to the created user
+su - your_username
+
+#Switch to your home directory
+cd
+
+#TC preparations
+
+#Pull the source from repo
+git clone https://github.com/11011010/FrankenCore.git
+
+#Change directory
+cd project-folder
+
+#Make a build directory
+mkdir build
+
+#Change directory
+cd build
+
+#Configure cmake 
+cmake ../ -DCMAKE_INSTALL_PREFIX=/home/$USER/folderyouwanttheserverinstalledin -DTOOLS=0
+
+#Compile the core. Replace cores with the number of cores you like to use ( for Ex. -j$4 )
+make -j$cores
+
+#Finally, install core.
+make install
+
+#All done, next step is the maps and database setup...
+
+The guide will be imprived in the future, but for now this should be enough
