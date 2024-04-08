@@ -1,9 +1,9 @@
-# FrankenCore 
+# FrankensteinCore 
 
 ![frankencorem logo](https://github.com/11011010/BFA-Frankenstein-Core/assets/69040574/18f377f8-f910-4486-8d6b-d6e0fd8b4631)
 
 
-## Why FrankenCore?
+## Why FrankensteinCore?
 * A "playable" server is online ( 07.04.2024 only open for testers ).
 * OpenSource
 * Everybody can participate
@@ -35,7 +35,8 @@ If you want to contribute to the project feel free to join us on our Discord ser
 * OpenSSL : 1.1.1L
 * Visual Studio 2022
 
-## Requirement 
+## Requirement Linux
+See install guide.
 <br>
 
 ## Link for discord.
