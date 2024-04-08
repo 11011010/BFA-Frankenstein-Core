@@ -1,5 +1,6 @@
 # FrankenCore 
 
+![frankencorem logo](https://github.com/11011010/BFA-Frankenstein-Core/assets/69040574/18f377f8-f910-4486-8d6b-d6e0fd8b4631)
 
 
 ## Why FrankenCore?
