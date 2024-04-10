@@ -44,7 +44,7 @@ See install guide.
 https://discord.gg/38KKNQcbVv
 
 ## Licence 
-FrankenCore is a copy of the BfaCore and therefore under the same license.
+FrankenCore was at the start a copy of the BfaCore and therefore under the same license.
 * BfACore source components are released under the [GNU AGPL v3](https://github.com/Boralus-Project/BfaCore-Reforged/blob/main/LICENSE)
 <br>
 <br>
