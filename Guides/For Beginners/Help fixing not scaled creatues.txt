@@ -1,0 +1,37 @@
+Since there is no way i can fix all the scaling myself, here a super simple guide on how to help simple.
+
+INSERT INTO `world_bfa`.`creature_template_scaling` (`Entry`, `LevelScalingMin`, `LevelScalingMax`, `VerifiedBuild`) VALUES
+(111111, 15, 60, 0),
+(111112, 15, 60, 0),
+..... many other creatures
+
+(111111, 15, 60, 0),
+(119999, 16, 60, 0);
+
+
+111111... 119999 are the creature IDs, .npc info gets you that.
+15 is the the starting level, you get that by looking at the NPC
+60 is the end of scaling, you can simply check the zone.
+0 is the checked build where it is working, just leave it 0
+
+now you can run through the world, check each not scaled npc and make a long list in the format above
+
+It would look like the follwing in the end.
+
+
+INSERT INTO `world_bfa`.`creature_template_scaling` (`Entry`, `LevelScalingMin`, `LevelScalingMax`, `VerifiedBuild`) VALUES
+(111111, 15, 60, 0),
+(111112, 15, 60, 0),
+(111113, 15, 60, 0),
+(111114, 15, 60, 0),
+(111115, 15, 60, 0),
+(111116, 15, 60, 0),
+(111117, 15, 60, 0),
+(111118, 15, 60, 0),
+(111119, 15, 60, 0),
+(1112113, 15, 60, 0),
+(1115114, 15, 60, 0),
+(1116115, 15, 60, 0),
+(1117116, 15, 60, 0),
+(1118117, 15, 60, 0),
+(11999925, 16, 60, 0);
