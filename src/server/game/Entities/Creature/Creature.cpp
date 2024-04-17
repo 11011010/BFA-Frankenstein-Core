@@ -186,20 +186,15 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
         DefaultCreatureLevelScaling()
         {
 			
-    CreatureTemplate const* cInfo = GetCreatureTemplate();
-    std::pair<int16, int16> levels = cInfo->GetMinMaxLevel();
-    uint8 minlevel = std::min(levels.first, levels.second);
-    uint8 maxlevel = std::max(levels.first, levels.second);
-				
 			//lets just scale everything?? ps: do rabbits scale now? 
             //MinLevel = 0;
-			MinLevel = minlevel;
-            MaxLevel = maxlevel+40;
-            DeltaLevelMin = 1;
+			MinLevel = 0;
+            MaxLevel = 190;
+            DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
 			
-			//Todo add all mobs to scaling or just leave as it is.
+			//Todo add all mobs to scaling or just leave as it is. add scaling depending on location
         }
     };
     static const DefaultCreatureLevelScaling defScaling;
