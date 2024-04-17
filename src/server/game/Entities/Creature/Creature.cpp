@@ -50,7 +50,6 @@
 #include "TemporarySummon.h"
 #include "Transport.h"
 #include "Util.h"
-#include "Unit.h"
 #include "Vehicle.h"
 #include "WildBattlePet.h"
 #include "World.h"
@@ -188,8 +187,8 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
         {
 			//lets just scale everything?? ps: do rabbits scale now? 
             //MinLevel = 0;
-			MinLevel = getLevel();
-            MaxLevel = getLevel()+40;
+			MinLevel = cInfo->GetMinMaxLevel();
+            MaxLevel = cInfo->GetMinMaxLevel()+40;
             DeltaLevelMin = 1;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
