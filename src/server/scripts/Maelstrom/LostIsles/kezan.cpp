@@ -1789,8 +1789,9 @@ public:
 
     void OnQuestComplete(Player* player, Quest const* quest)
     {
-        if (quest->GetQuestId() == 447)
-            PhasingHandler::AddPhase(player, 169, true);
+		// its double? TODO check later
+      //  if (quest->GetQuestId() == 447)
+          //  PhasingHandler::AddPhase(player, 169, true);
     }
 };
 
