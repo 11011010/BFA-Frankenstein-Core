@@ -185,16 +185,12 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-			
-			//lets just scale everything?? ps: do rabbits scale now? 
-            //MinLevel = 0;
 			MinLevel = 0;
-            MaxLevel = 190;
+            MaxLevel = 0;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
 			
-			//Todo add all mobs to scaling or just leave as it is. add scaling depending on location
         }
     };
     static const DefaultCreatureLevelScaling defScaling;
@@ -1495,7 +1491,24 @@ void Creature::SelectLevel()
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), scaling->ContentTuningID);
-    }
+		
+    }else  // all mobs should always get scaled regardless of the existing db entry.
+	{
+		level = maxlevel;
+
+        CreatureLevelScaling const* scaling = 0;
+
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), minlevel);
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), maxlevel+60);
+
+        int8 mindelta = 0;
+        int8 maxdelta =  0;
+        int8 delta = mindelta == maxdelta ? mindelta : irand(mindelta, maxdelta);
+
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), 0);
+		
+	}// all mobs should always get scaled regardless of the existing db entry.
 
     SetLevel(level);
 
