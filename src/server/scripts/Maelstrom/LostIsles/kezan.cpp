@@ -1801,7 +1801,7 @@ public:
 
     void OnQuestComplete(Player* player, Quest const* quest)
     {
-        if (quest->GetQuestId() == QUEST_LIFE_SAVINGS)
+        if (quest->GetQuestId() == 14126)
         {
             player->SendMovieStart(22);
             player->CastSpell(nullptr, 74100, true);
