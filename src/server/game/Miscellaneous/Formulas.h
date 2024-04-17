@@ -228,9 +228,9 @@ namespace Trinity
 
                 if (gain && creature)
                 {
-                    // Players get only 10% xp for killing creatures of lower expansion levels than himself
+                    // Players get only 10% xp for killing creatures of lower expansion levels than himself ?? why was this ever implemented. disabled for now
                     if ((uint32(creature->GetCreatureTemplate()->GetHealthScalingExpansion()) < GetExpansionForLevel(player->getLevel())))
-                        gain = uint32(round(gain / 10.0f));
+                       // gain = uint32(round(gain / 10.0f)); //  
 
                     if (creature->isElite())
                     {
