@@ -50,6 +50,7 @@
 #include "TemporarySummon.h"
 #include "Transport.h"
 #include "Util.h"
+#include "Unit.h"
 #include "Vehicle.h"
 #include "WildBattlePet.h"
 #include "World.h"
