@@ -185,11 +185,15 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-            MinLevel = 0;
-            MaxLevel = 0;
-            DeltaLevelMin = 0;
+			//lets just scale everything?? ps: do rabbits scale now? 
+            //MinLevel = 0;
+			MinLevel = getLevel();
+            MaxLevel = getLevel()+40;
+            DeltaLevelMin = 1;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
+			
+			//Todo add all mobs to scaling or just leave as it is.
         }
     };
     static const DefaultCreatureLevelScaling defScaling;
