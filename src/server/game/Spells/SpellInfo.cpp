@@ -565,7 +565,10 @@ int32 SpellEffectInfo::CalcValue(Unit const* caster /*= nullptr*/, int32 const* 
 
         value = caster->ApplyEffectModifiers(_spellInfo, EffectIndex, value);
     }
-
+if(value>2)  // for super early level scaling so some dots do a minimum of 2 damage per tick. can be removed after all spells are scaled 100 % so never
+{
+	value=2;
+}
     return int32(round(value));
 }
 
