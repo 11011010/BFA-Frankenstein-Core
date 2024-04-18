@@ -582,7 +582,7 @@ bool Creature::UpdateEntry(uint32 entry, CreatureData const* data /*= nullptr*/,
     SetBaseAttackTime(BASE_ATTACK,   cInfo->BaseAttackTime);
     SetBaseAttackTime(OFF_ATTACK,    cInfo->BaseAttackTime);
     SetBaseAttackTime(RANGED_ATTACK, cInfo->RangeAttackTime);
-
+	SelectLevel();  // needs to be updated all the time... otherwise does not work.
     if (updateLevel)
         SelectLevel();
     else
