@@ -185,8 +185,8 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-			MinLevel = 0;
-            MaxLevel = 0;
+			MinLevel = 1;
+            MaxLevel = 120;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
@@ -582,7 +582,13 @@ bool Creature::UpdateEntry(uint32 entry, CreatureData const* data /*= nullptr*/,
     SetBaseAttackTime(BASE_ATTACK,   cInfo->BaseAttackTime);
     SetBaseAttackTime(OFF_ATTACK,    cInfo->BaseAttackTime);
     SetBaseAttackTime(RANGED_ATTACK, cInfo->RangeAttackTime);
-	SelectLevel();  // needs to be updated all the time... otherwise does not work.
+	
+	
+	//  // needs to be updated all the time... otherwise does not work.
+
+
+	SelectLevel();
+	///
     if (updateLevel)
         SelectLevel();
     else
@@ -1494,12 +1500,12 @@ void Creature::SelectLevel()
 		
     }else  // all mobs should always get scaled regardless of the existing db entry.
 	{
-		level = maxlevel;
+		level = maxlevel+60; // offset for scaling.
 
         CreatureLevelScaling const* scaling = 0;
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), minlevel);
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), maxlevel+60);
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), maxlevel);
 
         int8 mindelta = 0;
         int8 maxdelta =  0;
@@ -1520,6 +1526,7 @@ void Creature::UpdateLevelDependantStats()
     CreatureTemplate const* cInfo = GetCreatureTemplate();
     uint32 rank = IsPet() ? 0 : cInfo->rank;
     uint8 level = getLevel();
+ 
     CreatureBaseStats const* stats = sObjectMgr->GetCreatureBaseStats(level, cInfo->unit_class);
 
     // health
