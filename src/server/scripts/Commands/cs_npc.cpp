@@ -504,7 +504,7 @@ public:
         }
 
        // creature->SetMaxHealth(100 + 30*lvl);
-        //creature->SetHealth(100 + 30*lvl);
+        //creature->SetHealth(100 + 30*lvl); // this explains a lot of err
 		uint32 health = creature->GetMaxHealthByLevel(lvl);
 		creature->SetHealth(health);
         creature->SetBaseHealth(health);
