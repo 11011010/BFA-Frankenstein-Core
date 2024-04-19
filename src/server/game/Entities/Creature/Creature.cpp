@@ -186,7 +186,7 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
         DefaultCreatureLevelScaling()
         {
 			MinLevel =0;
-            MaxLevel = 120;
+            MaxLevel = 0;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
@@ -587,11 +587,11 @@ bool Creature::UpdateEntry(uint32 entry, CreatureData const* data /*= nullptr*/,
 	
 
 
-	SelectLevel(); //  // needs to be updated all the time... otherwise does not work.
-	///
+	//
     if (updateLevel)
         SelectLevel();
     else
+		SelectLevel(); //alwasys update level
         UpdateLevelDependantStats(); // We still re-initialize level dependant stats on entry update
 
     SetMeleeDamageSchool(SpellSchools(cInfo->dmgschool));
@@ -1499,8 +1499,9 @@ void Creature::SelectLevel()
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), scaling->ContentTuningID);
 		
     }else  // all mobs should always get scaled regardless of the existing db entry.
-	{
-		level = maxlevel; // offset for scaling.
+	{		
+	
+		maxlevel = maxlevel +60;// offset for scaling.d
 
         CreatureLevelScaling const* scaling = 0;
 
@@ -1516,7 +1517,7 @@ void Creature::SelectLevel()
 		
 	}// all mobs should always get scaled regardless of the existing db entry.
 
-    SetLevel(level);
+	SetLevel(level);
 
     UpdateLevelDependantStats();
 }
@@ -1538,7 +1539,8 @@ void Creature::UpdateLevelDependantStats()
     SetCreateHealth(health);
     SetMaxHealth(health);
     SetHealth(health);
-    ResetPlayerDamageReq();
+	SetBaseHealth(health); // was missing
+	ResetPlayerDamageReq();
 
     // mana
     uint32 mana = stats->GenerateMana(cInfo);
@@ -2867,6 +2869,8 @@ uint64 Creature::GetMaxHealthByLevel(uint8 level) const
 
     return baseHealth * cInfo->ModHealth * cInfo->ModHealthExtra;
 }
+
+
 
 float Creature::GetHealthMultiplierForTarget(WorldObject const* target) const
 {

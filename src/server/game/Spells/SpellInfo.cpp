@@ -638,7 +638,6 @@ int32 SpellEffectInfo::CalcBaseValue(Unit const* caster, Unit const* target, uin
         value *= Scaling.Coefficient;
         if (value != 0.0f && value < 1.0f)
             value = 1.0f;
-
         return int32(round(value));
     }
     else
@@ -659,6 +658,7 @@ int32 SpellEffectInfo::CalcBaseValue(Unit const* caster, Unit const* target, uin
             int32 level = caster ? int32(caster->getLevel()) : 1;
             if (!caster || IsStatCompatible(caster, stat))
                 value = sDB2Manager.EvaluateExpectedStat(stat, level, expansion, 0, CLASS_NONE) * BasePoints / 100.0f;
+            
         }
 
         return int32(round(value));

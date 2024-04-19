@@ -503,8 +503,13 @@ public:
             return false;
         }
 
-        creature->SetMaxHealth(100 + 30*lvl);
-        creature->SetHealth(100 + 30*lvl);
+       // creature->SetMaxHealth(100 + 30*lvl);
+        //creature->SetHealth(100 + 30*lvl);
+		uint32 health = creature->GetMaxHealthByLevel(lvl);
+		creature->SetHealth(health);
+        creature->SetBaseHealth(health);
+		creature->SetMaxHealth(health);
+		creature->UpdateLevelDependantStats();
         creature->SetLevel(lvl);
         creature->SaveToDB();
 
