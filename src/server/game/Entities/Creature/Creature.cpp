@@ -185,7 +185,7 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-			MinLevel = 1;
+			MinLevel =0;
             MaxLevel = 120;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
@@ -584,10 +584,10 @@ bool Creature::UpdateEntry(uint32 entry, CreatureData const* data /*= nullptr*/,
     SetBaseAttackTime(RANGED_ATTACK, cInfo->RangeAttackTime);
 	
 	
-	//  // needs to be updated all the time... otherwise does not work.
+	
 
 
-	SelectLevel();
+	SelectLevel(); //  // needs to be updated all the time... otherwise does not work.
 	///
     if (updateLevel)
         SelectLevel();
@@ -1500,7 +1500,7 @@ void Creature::SelectLevel()
 		
     }else  // all mobs should always get scaled regardless of the existing db entry.
 	{
-		level = maxlevel+60; // offset for scaling.
+		level = maxlevel; // offset for scaling.
 
         CreatureLevelScaling const* scaling = 0;
 
