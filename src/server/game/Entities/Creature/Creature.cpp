@@ -591,7 +591,7 @@ bool Creature::UpdateEntry(uint32 entry, CreatureData const* data /*= nullptr*/,
     if (updateLevel)
         SelectLevel();
     else
-		SelectLevel(); //alwasys update level
+		//SelectLevel(); //alwasys update level
         UpdateLevelDependantStats(); // We still re-initialize level dependant stats on entry update
 
     SetMeleeDamageSchool(SpellSchools(cInfo->dmgschool));
@@ -1490,6 +1490,8 @@ void Creature::SelectLevel()
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(maxlevel));
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), maxlevel);
 
         int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
         int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
@@ -1507,6 +1509,8 @@ void Creature::SelectLevel()
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), minlevel);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), maxlevel);
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(maxlevel));
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), maxlevel);
 
         int8 mindelta = 0;
         int8 maxdelta =  0;

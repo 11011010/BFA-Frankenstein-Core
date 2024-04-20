@@ -508,6 +508,7 @@ public:
 		uint32 health = creature->GetMaxHealthByLevel(lvl);
 		creature->SetHealth(health);
         creature->SetBaseHealth(health);
+		creature->SetCreateHealth(health); //
 		creature->SetMaxHealth(health);
 		creature->UpdateLevelDependantStats();
         creature->SetLevel(lvl);
