@@ -1501,7 +1501,7 @@ void Creature::SelectLevel()
     }else  // all mobs should always get scaled regardless of the existing db entry.
 	{		
 	
-		maxlevel = maxlevel +60;// offset for scaling.d
+		level = maxlevel +60;// offset for scaling.d
 
         CreatureLevelScaling const* scaling = 0;
 
