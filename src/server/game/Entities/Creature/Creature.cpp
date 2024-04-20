@@ -1492,6 +1492,7 @@ void Creature::SelectLevel()
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
 		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(maxlevel));
 		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), maxlevel);
+		
 
         int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
         int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
@@ -1503,7 +1504,7 @@ void Creature::SelectLevel()
     }else  // all mobs should always get scaled regardless of the existing db entry.
 	{		
 	
-		maxlevel = maxlevel +60;// offset for scaling.d
+		level = maxlevel +60;// offset for scaling.d
 
         CreatureLevelScaling const* scaling = 0;
 
