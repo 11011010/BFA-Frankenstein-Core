@@ -185,8 +185,8 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-			MinLevel =0;
-            MaxLevel = 0;
+			MinLevel =1;
+            MaxLevel = 120;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
@@ -1481,17 +1481,25 @@ void Creature::SelectLevel()
     uint8 minlevel = std::min(levels.first, levels.second);
     uint8 maxlevel = std::max(levels.first, levels.second);
     uint8 level = minlevel == maxlevel ? minlevel : urand(minlevel, maxlevel);
-
+	uint8 levelplayer = getLevel();
+	
     if (HasScalableLevels())
     {
+		uint8 levelplayer = getLevel();
         level = maxlevel;
+		//if (level+1 > levelplayer)
+      //  { 
+        //    level = levelplayer;
+//}
+			
+			
 
         CreatureLevelScaling const* scaling = cInfo->GetLevelScaling(GetMap()->GetDifficultyID());
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(maxlevel));
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), maxlevel);
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(level));
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), level);
 		
 
         int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
@@ -1501,17 +1509,22 @@ void Creature::SelectLevel()
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), scaling->ContentTuningID);
 		
-    }else  // all mobs should always get scaled regardless of the existing db entry.
+    }
+	/*else  // all mobs should always get scaled regardless of the existing db entry.
 	{		
-	
-		level = maxlevel +60;// offset for scaling.d
-
+	level = maxlevel;
+       // if (level+1 > levelplayer)
+       // {
+       //  level = levelplayer;
+      //  }
+	  	uint8 levelplayer = getLevel();
+	    levelplayer = levelplayer+1;
         CreatureLevelScaling const* scaling = 0;
 
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), minlevel);
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), maxlevel);
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(maxlevel));
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), maxlevel);
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), 1);
+        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), 120);
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(level));
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), level);
 
         int8 mindelta = 0;
         int8 maxdelta =  0;
@@ -1522,8 +1535,8 @@ void Creature::SelectLevel()
 		
 	}// all mobs should always get scaled regardless of the existing db entry.
 
-	SetLevel(level);
-
+	SetLevel(levelplayer);
+*/
     UpdateLevelDependantStats();
 }
 
@@ -1531,8 +1544,7 @@ void Creature::UpdateLevelDependantStats()
 {
     CreatureTemplate const* cInfo = GetCreatureTemplate();
     uint32 rank = IsPet() ? 0 : cInfo->rank;
-    uint8 level = getLevel();
- 
+	 uint8 level = getLevel();
     CreatureBaseStats const* stats = sObjectMgr->GetCreatureBaseStats(level, cInfo->unit_class);
 
     // health
