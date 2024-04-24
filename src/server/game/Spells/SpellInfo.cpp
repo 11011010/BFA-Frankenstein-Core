@@ -566,7 +566,6 @@ int32 SpellEffectInfo::CalcValue(Unit const* caster /*= nullptr*/, int32 const* 
         value = caster->ApplyEffectModifiers(_spellInfo, EffectIndex, value);
     }
 
-	//value = value+ 1.5;  // round up low level damage, and it has no influence on anything high
     return int32(round(value));
 }
 
