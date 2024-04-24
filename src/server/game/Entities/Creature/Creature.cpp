@@ -1535,7 +1535,7 @@ void Creature::SelectLevel()
 		
 	}// all mobs should always get scaled regardless of the existing db entry.
 
-	SetLevel(levelplayer);
+	SetLevel(levelplayer); //  ..
 */
     UpdateLevelDependantStats();
 }
