@@ -1475,7 +1475,7 @@ void Creature::SelectLevel()
     uint8 minlevel = std::min(levels.first, levels.second);
     uint8 maxlevel = std::max(levels.first, levels.second);
     uint8 level = minlevel == maxlevel ? minlevel : urand(minlevel, maxlevel);
-
+	level = maxlevel;
     if (HasScalableLevels())
     {
         level = maxlevel;
