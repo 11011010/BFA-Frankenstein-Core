@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -188,10 +188,10 @@ namespace WorldPackets
 
             WorldPacket const* Write() override;
 
-            int32 Duration;
-            int32 MapId;
-            int32 ChallengeId;
-            int32 ChallengeLevel;
+            uint32 Duration;
+            uint32 MapId;
+            uint32 ChallengeId;
+            uint32 ChallengeLevel;
             uint8 unk = 128;
         };
 		

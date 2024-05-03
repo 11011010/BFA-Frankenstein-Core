@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -185,12 +185,11 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-			MinLevel =1;
-            MaxLevel = 120;
+            MinLevel = 0;
+            MaxLevel = 0;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
-			
         }
     };
     static const DefaultCreatureLevelScaling defScaling;
@@ -582,16 +581,11 @@ bool Creature::UpdateEntry(uint32 entry, CreatureData const* data /*= nullptr*/,
     SetBaseAttackTime(BASE_ATTACK,   cInfo->BaseAttackTime);
     SetBaseAttackTime(OFF_ATTACK,    cInfo->BaseAttackTime);
     SetBaseAttackTime(RANGED_ATTACK, cInfo->RangeAttackTime);
-	
-	
-	
-
-
-	//
+  
+  
     if (updateLevel)
         SelectLevel();
     else
-		//SelectLevel(); //alwasys update level
         UpdateLevelDependantStats(); // We still re-initialize level dependant stats on entry update
 
     SetMeleeDamageSchool(SpellSchools(cInfo->dmgschool));
@@ -1481,62 +1475,30 @@ void Creature::SelectLevel()
     uint8 minlevel = std::min(levels.first, levels.second);
     uint8 maxlevel = std::max(levels.first, levels.second);
     uint8 level = minlevel == maxlevel ? minlevel : urand(minlevel, maxlevel);
-	uint8 levelplayer = getLevel();
-	
+
     if (HasScalableLevels())
     {
-		uint8 levelplayer = getLevel();
         level = maxlevel;
-		//if (level+1 > levelplayer)
-      //  { 
-        //    level = levelplayer;
-//}
-			
-			
-
+		if (minlevel == 1 && maxlevel == 120)
+		{
+			level = 60;
+		}
         CreatureLevelScaling const* scaling = cInfo->GetLevelScaling(GetMap()->GetDifficultyID());
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(level));
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), level);
-		
 
         int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
         int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
+
         int8 delta = mindelta == maxdelta ? mindelta : irand(mindelta, maxdelta);
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), scaling->ContentTuningID);
-		
     }
-	/*else  // all mobs should always get scaled regardless of the existing db entry.
-	{		
-	level = maxlevel;
-       // if (level+1 > levelplayer)
-       // {
-       //  level = levelplayer;
-      //  }
-	  	uint8 levelplayer = getLevel();
-	    levelplayer = levelplayer+1;
-        CreatureLevelScaling const* scaling = 0;
 
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), 1);
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), 120);
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::BaseHealth), GetMaxHealthByLevel(level));
-		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::Level), level);
+    SetLevel(level);
 
-        int8 mindelta = 0;
-        int8 maxdelta =  0;
-        int8 delta = mindelta == maxdelta ? mindelta : irand(mindelta, maxdelta);
-
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), 0);
-		
-	}// all mobs should always get scaled regardless of the existing db entry.
-
-	SetLevel(levelplayer); //  ..
-*/
     UpdateLevelDependantStats();
 }
 
@@ -1544,7 +1506,7 @@ void Creature::UpdateLevelDependantStats()
 {
     CreatureTemplate const* cInfo = GetCreatureTemplate();
     uint32 rank = IsPet() ? 0 : cInfo->rank;
-	 uint8 level = getLevel();
+    uint8 level = getLevel();
     CreatureBaseStats const* stats = sObjectMgr->GetCreatureBaseStats(level, cInfo->unit_class);
 
     // health
@@ -1556,8 +1518,7 @@ void Creature::UpdateLevelDependantStats()
     SetCreateHealth(health);
     SetMaxHealth(health);
     SetHealth(health);
-	SetBaseHealth(health); // was missing
-	ResetPlayerDamageReq();
+    ResetPlayerDamageReq();
 
     // mana
     uint32 mana = stats->GenerateMana(cInfo);
@@ -2887,8 +2848,6 @@ uint64 Creature::GetMaxHealthByLevel(uint8 level) const
     return baseHealth * cInfo->ModHealth * cInfo->ModHealthExtra;
 }
 
-
-
 float Creature::GetHealthMultiplierForTarget(WorldObject const* target) const
 {
     if (!HasScalableLevels())
@@ -2897,7 +2856,10 @@ float Creature::GetHealthMultiplierForTarget(WorldObject const* target) const
     uint8 levelForTarget = GetLevelForTarget(target);
     if (getLevel() < levelForTarget)
         return 1.0f;
-
+	
+	 
+	
+		
     return double(GetMaxHealthByLevel(levelForTarget)) / double(GetCreateHealth());
 }
 
@@ -2953,15 +2915,20 @@ uint8 Creature::GetLevelForTarget(WorldObject const* target) const
         // between UNIT_FIELD_SCALING_LEVEL_MIN and UNIT_FIELD_SCALING_LEVEL_MAX
         if (HasScalableLevels())
         {
+           
             int32 scalingLevelMin = m_unitData->ScalingLevelMin;
             int32 scalingLevelMax = m_unitData->ScalingLevelMax;
+
             int32 scalingLevelDelta = m_unitData->ScalingLevelDelta;
             int32 scalingFactionGroup = m_unitData->ScalingFactionGroup;
             int32 targetLevel = unitTarget->m_unitData->EffectiveLevel;
             if (!targetLevel)
                 targetLevel = unitTarget->getLevel();
-
+                 
             int32 targetLevelDelta = 0;
+
+            uint8 lvl = static_cast<uint8>(targetLevel);
+            SetLevel(lvl);
 
             if (Player const* playerTarget = target->ToPlayer())
             {
@@ -2975,8 +2942,10 @@ uint8 Creature::GetLevelForTarget(WorldObject const* target) const
             int32 levelWithDelta = targetLevel + targetLevelDelta;
             int32 level = RoundToInterval(levelWithDelta, scalingLevelMin, scalingLevelMax) + scalingLevelDelta;
             return RoundToInterval(level, 1, MAX_LEVEL + 3);
+
         }
     }
+    
 
     return Unit::GetLevelForTarget(target);
 }

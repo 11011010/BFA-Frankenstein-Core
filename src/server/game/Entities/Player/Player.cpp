@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -51,7 +51,6 @@
 #include "CombatPackets.h"
 #include "Common.h"
 #include "ConditionMgr.h"
-#include "Config.h"
 #include "CreatureAI.h"
 #include "DB2Stores.h"
 #include "DatabaseEnv.h"
@@ -16021,8 +16020,11 @@ void Player::AddQuestAndCheckCompletion(Quest const* quest, Object* questGiver)
         CompleteQuest(quest->GetQuestId());
 
     if (!questGiver)
+    {
+        sScriptMgr->OnQuestAccept(this, quest);
         return;
-
+    }
+       
     switch (questGiver->GetTypeId())
     {
         case TYPEID_UNIT:
@@ -30345,6 +30347,9 @@ void Player::RemoveSpecializationSpells()
 
 void Player::RemoveEquipedSpecializationItems()
 {
+    if (getLevel() < MIN_SPECIALIZATION_LEVEL)
+        return;
+
     for (uint8 i = EQUIPMENT_SLOT_START; i < EQUIPMENT_SLOT_END; i++)
         if (Item* item = GetItemByPos(INVENTORY_SLOT_BAG_0, i))
             if (!item->GetTemplate()->IsUsableBySpecialization(GetSpecializationId(), getLevel(), false) || CanUseItem(item) != EQUIP_ERR_OK)

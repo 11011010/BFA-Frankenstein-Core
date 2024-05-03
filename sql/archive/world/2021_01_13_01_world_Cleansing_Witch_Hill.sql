@@ -1,0 +1,2 @@
+INSERT INTO `gameobject` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `position_x`, `position_y`, `position_z`, `orientation`, `rotation0`, `rotation1`, `rotation2`, `rotation3`, `spawntimesecs`, `animprogress`, `state`, `isActive`, `ScriptName`, `VerifiedBuild`) VALUES
+(3440000001454, 300143, 1, 0, 0, '0', 0, 0, 0, -1, -2967.7, -3870.12, 28.5251, 5.20049, -0, -0, -0.515289, 0.857016, 300, 255, 1, 0, '', 0);

@@ -83,7 +83,7 @@ DataDir = ".\ClientData"
 #                     Logs directory must exists, or log file creation will be disabled.
 #        Default:     "" - (Log files will be stored in the current path)
 
-LogsDir = ".\Logs"
+LogsDir = ".\Data\Logs"
 
 #
 #    LoginDatabaseInfo
@@ -225,7 +225,7 @@ SourceDirectory  = ".\Updater\"
 #                     "/usr/bin/mysql"
 #        Default:     ""
 
-MySQLExecutable = ""
+MySQLExecutable = ".\Data\MySQL\bin\mysql.exe"
 
 #
 #    IPLocationFile
@@ -1194,7 +1194,7 @@ BeepAtStart = 1
 #        Example:     "Welcome to John's Server!@This server is proud to be powered by Trinity Core."
 #        Default:     "Welcome to a Trinity Core server."
 
-Motd = "Welcome to BfaCore Reforged | Battle for Azeroth 8.3.7."
+Motd = "Welcome to BfaCore 8.3.7 server."
 
 #
 #    Server.LoginInfo
@@ -4163,14 +4163,14 @@ Metric.OverallStatusInterval = 1
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-FeatureSystem.BpayStore.Enabled = 0
+FeatureSystem.BpayStore.Enabled = 1
 
 #   Purchase.Shop.Enabled
 #        Description: Not yet implemented
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Purchase.Shop.Enabled = 0
+Purchase.Shop.Enabled = 1
 
 #
 ###################################################################################################
@@ -4234,6 +4234,19 @@ Dungeon.WeightedMythicKeystone.Enabled = 1
 ###################################################################################################
 
 ###################################################################################################
+# WorldChat
+#
+#   WorldChat.Enable
+#        Description: Enable/disable world chat.
+#        Default:     1 - (Enabled)
+#                     0 - (Disabled)
+
+WorldChat.Enable = 1
+
+#
+###################################################################################################
+
+###################################################################################################
 # Dynamic XP Rate #
 #
 #
@@ -4250,6 +4263,57 @@ DynamicXP.Enable = 0
 ###################################################################################################
 
 ###################################################################################################
+# SinglePlayer options
+#
+#   SinglePlayer.HPMOD.Enabled
+#       Description: Enable\Disable hp mod of player.
+#                    Mod for singleplayer or low populated servers.
+#       Default:     0 - (Disabled)
+#                    1 - (Enabled)
+
+SinglePlayer.HPMOD.Enabled = 0
+
+#   SinglePlayer.HPMOD
+#       Description: Set amount of hp for player.
+#                    (base_hp * X.X).
+#       Default:     1.0  - 100% hp
+#                    0.5  -  50% hp
+#                    0.01 -   1% hp
+#                    5.0  - 500% hp
+
+SinglePlayer.HPMOD = 5.0
+
+#   Solocraft.Enable
+#       Description: Solocraft is a mod that boosts stats of players on dungeons and raids.
+#                    Mod for singleplayer or low populated servers.
+#       Default:     0 (disabled)
+#                    1 (enabled)
+
+Solocraft.Enable = 0
+
+#   Solocraft.Announce
+#       Description: If solocraft is enabled, announce that it is on when entering a dungeon?
+#       Default:     0 (disabled)
+#                    1 (enabled)
+
+Solocraft.Announce = 0
+
+#   Difficulty Multipliers
+#       Description: Difficulty multipliers for dungeons.
+#       Defaults: 5, 10, 15, 10, 25, 30, 40
+
+Solocraft.Dungeon = 5
+Solocraft.Heroic = 10
+Solocraft.Mythic = 15
+Solocraft.Raid10 = 10
+Solocraft.Raid25 = 25
+Solocraft.Raid30 = 30
+Solocraft.Raid40 = 40
+
+#
+###################################################################################################
+
+###################################################################################################
 # Developer options (ONLY FOR DEVELOPING!)
 #
 #   DungeonFinder.DebugJoin
@@ -4258,7 +4322,7 @@ DynamicXP.Enable = 0
 #       Default:     0 - (Disabled)
 #                    1 - (Enabled)
 
-DungeonFinder.DebugJoin = 0
+DungeonFinder.DebugJoin = 1
 
 #
 ###################################################################################################

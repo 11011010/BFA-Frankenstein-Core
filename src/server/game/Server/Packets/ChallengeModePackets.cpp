@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -160,10 +160,10 @@ WorldPacket const* WorldPackets::ChallengeMode::UpdateDeathCount::Write()
 
 WorldPacket const* WorldPackets::ChallengeMode::Complete::Write()
 {
-    _worldPacket << (int32)Duration;
-    _worldPacket << (int32)MapId;
-    _worldPacket << (int32)ChallengeId;
-    _worldPacket << (int32)ChallengeLevel;
+    _worldPacket << (uint32)Duration;
+    _worldPacket << (uint32)MapId;
+    _worldPacket << (uint32)ChallengeId;
+    _worldPacket << (uint32)ChallengeLevel;
 
     _worldPacket << (uint8)unk;
 

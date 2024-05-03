@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -93,7 +93,7 @@ namespace WorldPackets
             ScalingHealthItemLevelCurveID = target->m_unitData->ScalingHealthItemLevelCurveID;
             TargetLevel = target->getLevel();
             Expansion = creatureTemplate->RequiredExpansion;
-            TargetMinScalingLevel = uint8(creatureScaling->MinLevel);
+            TargetMinScalingLevel =  uint8(creatureScaling->MinLevel);
             TargetMaxScalingLevel = uint8(creatureScaling->MaxLevel);
             TargetScalingLevelDelta = int8(target->m_unitData->ScalingLevelDelta);
             return true;

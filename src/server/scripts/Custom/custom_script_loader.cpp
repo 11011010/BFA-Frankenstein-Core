@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -18,6 +18,8 @@
 // This is where scripts' loading functions should be declared:
 void AddSC_custom_npcs();
 void AddSC_custom_player_script();
+void AddSC_cs_world_chat();
+void AddSC_solocraft();
 void AddSC_XpWeekend();
 void AddSC_solocraft();
 
@@ -30,6 +32,8 @@ void AddCustomScripts()
 {
     AddSC_custom_npcs();
     AddSC_custom_player_script();
+    AddSC_cs_world_chat();
+	AddSC_solocraft();
 	AddSC_XpWeekend();
     AddSC_solocraft();
 

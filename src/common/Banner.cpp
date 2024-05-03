@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 BfaCore Reforged
+ * Copyright 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -23,17 +23,15 @@ void Trinity::Banner::Show(char const* applicationName, void(*log)(char const* t
 {
     log(Trinity::StringFormat("%s (%s)", GitRevision::GetFullVersion(), applicationName).c_str() );
     log("<Ctrl-C> to stop.\n                                                                    ");
-    log(" /#######  /######         /######                                                     ");
-    log("| ##__  ##/##__  ##       /##__  ##                                                    ");
-    log("| ##  \\ #| ##  \\__/######| ##  \\__/ /######  /######  /######                       ");
-    log("| #######| ####  |____  #| ##      /##__  ##/##__  ##/##__  ##                         ");
-    log("| ##__  #| ##_/   /######| ##     | ##  \\ #| ##  \\__| ########                       ");
-    log("| ##  \\ #| ##    /##__  #| ##    #| ##  | #| ##     | ##_____/                        ");
-    log("| #######| ##    | ######|  ######|  ######| ##     |  #######                         ");
+    log(" /$$$$$$$  /$$$$$$         /$$$$$$                                                     ");
+    log("| $$__  $$/$$__  $$       /$$__  $$                                                    ");
+    log("| $$  \\ $| $$  \\__/$$$$$$| $$  \\__/ /$$$$$$  /$$$$$$  /$$$$$$                       ");
+    log("| $$$$$$$| $$$$  |____  $| $$      /$$__  $$/$$__  $$/$$__  $$                         ");
+    log("| $$__  $| $$_/   /$$$$$$| $$     | $$  \\ $| $$  \\__| $$$$$$$$                       ");
+    log("| $$  \\ $| $$    /$$__  $| $$    $| $$  | $| $$     | $$_____/                        ");
+    log("| $$$$$$$| $$   |  $$$$$$|  $$$$$$|  $$$$$$| $$     |  $$$$$$$                         ");
     log("|_______/|__/    \\_______/\\______/ \\______/|__/      \\_______/                     ");
-	log("																						");
-	log("	   World of Warcraft Emulator | Battle for Azeroth 8.3.7                            ");
-    log("	https://discord.gg/hTtSYh7WbQ | bfacore.reforged@gmail.com \n                        ");
+    log("https://discord.gg/57D59ed ShadowCoreTeam@yahoo.com \n                                 ");
 
     if (logExtraInfo)
         logExtraInfo();

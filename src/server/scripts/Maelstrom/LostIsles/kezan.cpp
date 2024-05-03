@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  * Copyright (C) 2010 - 2012 Project SkyFire <http://www.projectskyfire.org/>
  * Copyright (C) 2011 - 2012 ArkCORE <http://www.arkania.net/>
  *
@@ -905,7 +905,7 @@ public:
             player->GetScheduler().Schedule(1s, [player](TaskContext /*context*/)
             {
                 player->RemoveAurasDueToSpell(SPELL_GENERIC_INVISIBILITY_DETECTION_4);
-               /// player->NearTeleportTo(-8250.910156f, 1484.290039f, 41.499901f, 3.124140f);
+                player->NearTeleportTo(-8250.910156f, 1484.290039f, 41.499901f, 3.124140f);
 
                 player->GetScheduler().Schedule(1s, [player](TaskContext /*context*/)
                 {
@@ -920,7 +920,6 @@ public:
         }
         else if (newStatus == QUEST_STATUS_REWARDED)
         {
-			player->NearTeleportTo(-8250.910156f, 1484.290039f, 41.499901f, 3.124140f);
             player->CastSpell(player, SPELL_GROUND_RUMBLE_EARTHQUAKE, true);
         }
     }
@@ -1181,11 +1180,11 @@ class spell_life_saving_complete : public SpellScript
     {
         if (Player* player = GetCaster()->ToPlayer())
         {
-          //  player->AddMovieDelayedAction(22, [player]
+            player->AddMovieDelayedAction(22, [player]
             {
-             //  player->RemoveAurasDueToSpell(91847);
-               //player->CastSpell(nullptr, 74100, true); // Life Savings: Teleport & Bind to the Lost Isles
-            };
+                player->RemoveAurasDueToSpell(91847);
+                player->CastSpell(nullptr, 74100, true); // Life Savings: Teleport & Bind to the Lost Isles
+            });
         }
     }
 
@@ -1803,13 +1802,10 @@ public:
     void OnQuestComplete(Player* player, Quest const* quest)
     {
         if (quest->GetQuestId() == QUEST_LIFE_SAVINGS)
-			{
-				if (player->GetQuestStatus(QUEST_LIFE_SAVINGS) == QUEST_STATUS_REWARDED)
-				{
+        {
             player->SendMovieStart(22);
             player->CastSpell(nullptr, 74100, true);
-                }
-			}
+        }
     }
 };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -228,9 +228,9 @@ namespace Trinity
 
                 if (gain && creature)
                 {
-                    // Players get only 10% xp for killing creatures of lower expansion levels than himself ?? why was this ever implemented. disabled for now
+                    // Players get only 10% xp for killing creatures of lower expansion levels than himself
                     if ((uint32(creature->GetCreatureTemplate()->GetHealthScalingExpansion()) < GetExpansionForLevel(player->getLevel())))
-                       // gain = uint32(round(gain / 10.0f)); //  
+                        gain = uint32(round(gain / 10.0f));
 
                     if (creature->isElite())
                     {

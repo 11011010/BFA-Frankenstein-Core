@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  * Copyright (C) 2011 - 2012 ArkCORE <http://www.arkania.net/>
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -526,9 +526,8 @@ class spell_weed_whacker : public SpellScript
                 {
                     if (player->HasAura(SPELL_WEED_WHACKER_AURA))
                         player->RemoveAura(SPELL_WEED_WHACKER_AURA);
-                    else if (player->GetQuestStatus(QUEST_WEED_WHAKER) == QUEST_STATUS_COMPLETE)
+                    else if (player->GetQuestStatus(QUEST_WEED_WHAKER) == QUEST_STATUS_INCOMPLETE)
                         player->CastSpell(player, SPELL_WEED_WHACKER_AURA, true);
-					
                 }
             }
         }

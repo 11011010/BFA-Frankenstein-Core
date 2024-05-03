@@ -1,0 +1,1 @@
+UPDATE `creature_loot_template` SET `Chance` = '50.791' WHERE `Entry` = 2959 AND `Item` = 4758;

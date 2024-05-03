@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2021 BfaCore Reforged
+* Copyright (C) 2020 BfaCore
 *
 * This program is free software; you can redistribute it and/or modify it
 * under the terms of the GNU General Public License as published by the
@@ -551,6 +551,30 @@ public:
 };
 
 
+/* BfaCore Free Repack Welcome message */
+/*class BfaCoreFreeRepackWelcome : public PlayerScript
+{
+public:
+    BfaCoreFreeRepackWelcome() : PlayerScript("BfaCoreFreeRepackWelcome") { }
+
+    void OnLogin(Player* player, bool) override
+    {
+        ChatHandler(player->GetSession()).SendSysMessage("|cffFF0000 This is BfaCore Free Repack. Donate to remove ads and limitations.|r");
+        ChatHandler(player->GetSession()).SendSysMessage("|cffFF0000 BfaCore official discord: https://discord.gg/57D59ed ShadowCoreTeam@yahoo.com|r");
+    }
+};*/
+
+/*class BFACoreCredits : public PlayerScript
+{
+public:
+    BFACoreCredits() : PlayerScript("BFACoreCredits") { }
+
+    void OnLogin(Player* player, bool) override
+    {
+        ChatHandler(player->GetSession()).SendSysMessage("|cffFF0000 This core is powered from BFACore team. https://discord.gg/57D59ed");
+    }
+};*/
+
 void AddSC_custom_player_script()
 {
     RegisterPlayerScript(playerscript_recruiter);
@@ -560,6 +584,8 @@ void AddSC_custom_player_script()
     RegisterPlayerScript(On120Arrival);             // TEMP FIX! remove it when bfa starting is properly fixed.
     RegisterPlayerScript(WorgenRunningWild);
     RegisterPlayerScript(PlayerSavingOnLogoutFix);
+    //RegisterPlayerScript(BfaCoreFreeRepackWelcome);
+    //RegisterPlayerScript(BFACoreCredits);
 	new PlayerScript_Weekly_Spells();
 	RegisterPlayerScript(player_level_rewards);
 

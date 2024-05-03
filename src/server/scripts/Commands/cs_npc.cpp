@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 BfaCore Reforged
+ * Copyright (C) 2020 BfaCore
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -503,14 +503,8 @@ public:
             return false;
         }
 
-       // creature->SetMaxHealth(100 + 30*lvl);
-        //creature->SetHealth(100 + 30*lvl); // this explains a lot of err
-		uint32 health = creature->GetMaxHealthByLevel(lvl);
-		creature->SetHealth(health);
-        creature->SetBaseHealth(health);
-		creature->SetCreateHealth(health); //
-		creature->SetMaxHealth(health);
-		creature->UpdateLevelDependantStats();
+        creature->SetMaxHealth(100 + 30*lvl);
+        creature->SetHealth(100 + 30*lvl);
         creature->SetLevel(lvl);
         creature->SaveToDB();
 

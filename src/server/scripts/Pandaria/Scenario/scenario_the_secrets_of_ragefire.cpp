@@ -1,24 +1,3 @@
-/*
- * Copyright (C) 2022 BfaCore Reforged
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation; either version 2 of the License, or (at your
- * option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
- * more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
- 
-// Map: 1131
-// Position: X: 1396.58 Y: 802.536 Z: 38.8645 O: 1.921415
-// .go 1396.58 802.536 38.8645 1131
-
 #include "Log.h"
 #include "Scenario.h"
 #include "GameObject.h"
@@ -43,6 +22,8 @@ enum DataTypes
     SCENARIO_ID = 219,
 };
 
+Position const finalBossPos = { 1452.521729f, 1046.348877f, 33.847805f, 4.314608f };
+Position const spawnPosIron = { 1436.746338f, 1021.107483f, 34.471546f, 4.888280f };
 
 enum RageFireCreaIds
 {
@@ -131,10 +112,9 @@ enum ScenarioEvents
     //stage 5
     SCENARIO_EVENT_COMPLETE_ALL_BONUS_OBJECTIVES_TO_RECEIVE_BONUS_VALOR = 32799,//treeid
 };
-
-Position const finalBossPos = { 1452.521729f, 1046.348877f, 33.847805f, 4.314608f };
-Position const spawnPosIron = { 1436.746338f, 1021.107483f, 34.471546f, 4.888280f };
-
+//Map: 1131 (-Unknown-)
+//Position: X: 1396.58 Y : 802.536 Z : 38.8645 O : 1.921415
+// .go 1396.58 802.536 38.8645 1131
 struct scenario_the_secrets_of_ragefire : public InstanceScript
 {
     scenario_the_secrets_of_ragefire(InstanceMap* map) : InstanceScript(map) { }

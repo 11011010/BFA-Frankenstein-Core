@@ -1,5 +1,5 @@
  /*
-  * Copyright (C) 2022 BfaCore Reforged
+  * Copyright (C) 2020 BfaCore
   * Copyright (C) 2010-2018 Trinity <http://www.projecttrinity.org/>
   *
   * This program is free software; you can redistribute it and/or modify it
