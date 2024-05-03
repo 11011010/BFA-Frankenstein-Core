@@ -2924,8 +2924,6 @@ uint8 Creature::GetLevelForTarget(WorldObject const* target) const
                  
             int32 targetLevelDelta = 0;
 
-            uint8 lvl = static_cast<uint8>(targetLevel);
-            SetLevel(lvl);
 
             if (Player const* playerTarget = target->ToPlayer())
             {

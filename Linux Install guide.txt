@@ -1,3 +1,23 @@
+
+
+
+
+
+
+
+
+
+
+Currently the linux build does not work.
+Anyone is welcome to fix it, it is on the list of todos but a lot of other things come first.
+
+
+
+
+
+
+
+
 #General requirements ( needs root )
 needs seriuos update.
 
@@ -20,11 +40,14 @@ tar -xvf boost_1_67_0.tar.bz2
 cd boost_1_67_0
 
 #Create bootstrap
-./bootstrap.sh
+./bootstrap.sh../
 
 #Install Boost 1.67. Replace cores with the number of cores you like to use ( for Ex. -j$4 )
 #This will take some time depending on youer hardware so take a coffee, walk the dog or whatever you like.
 ./b2 --with=all -j$(cores) install
+or use this when while cmake.
+./bjam  install
+.b
 openssl preparations
 wget https://www.openssl.org/source/openssl-1.0.2n.tar.gz
 gzip -d openssl-1.0.2n.tar.gz
