@@ -1,47 +1,52 @@
-# BfaCore - World of Warcraft Battle For Azeroth 8.3.7.35662 Emulator
+# FrankensteinCore 
+
+![frankencorem logo](https://github.com/11011010/BFA-Frankenstein-Core/assets/69040574/18f377f8-f910-4486-8d6b-d6e0fd8b4631)
 
 
---------------
+## Why FrankensteinCore?
+* A "playable" server is online ( 07.04.2024 only open for testers ).
+* OpenSource
+* Everybody can participate
+* Hopefully Most complete Bfa source
+
+The goal of the project is to reproduce the World of Warcraft© game world in a mostly Blizzlike way and as similar as possible to the official game,
+but with improvments such as balancing and better low level scaling.
+
+We have joined with a support team to mange the server, the support team and dev team are two different groups.
 
 
-* [Introduction](#introduction)
-* [Requirements](#requirements)
-* [Install](#install)
+<br>
 
+## Support us
 
+* By testing our fixes 
+* By developing directly to the core
+* By reporting bugs 
+* By making extra content (video tutorial for example)
 
-## Introduction
+If you want to contribute to the project feel free to join us on our Discord server. Your participation in the project will already be a great help. 
 
-BfaCore is mostly based on TrinityCore, written in c++ and sql.
+<br>
 
+## Requirement Windows 
+* CMake : ≥ 3.20
+* Boost : 1.67 to 1.72.0 full.
+* MySQL : 5.7 or 8 CE
+* OpenSSL : 1.1.1L
+* Visual Studio 2022
 
+## Requirement Linux
+See install guide.
+<br>
 
-## Requirements
+## Link for discord.
 
-* Visual Studio 2019
-* OpenSSL 1.1.1h
-* Boost 1.66
-* MySql 5.7.32
+https://discord.gg/38KKNQcbVv
 
-* Client Data (3.73Gb)
-
-https://www.mediafire.com/file/nv8y80zo6a6mtk6/BfaCore_ClientData_deDE_enUS_esES_esMX_frFR_itIT_koKR_ptBR_ruRU_zhCN_zhTW_8.3.7.35662_2021_01_06.rar
-
-* Minimal Client (686Mb)
-
-https://www.mediafire.com/file/alptz7hyjlalj95/WOW_BFA_8.3.7.35662_ENUS_BFACORE_MINIMAL.exe
-
-
-
-
-Software requirements are available in the TrinityCore [wiki](https://www.trinitycore.info/display/tc/Requirements) for
-Windows, Linux and macOS.
-
-
-
-## Install
-
-Detailed installation guides are available in the TrinityCore [wiki](https://www.trinitycore.info/display/tc/Installation+Guide) for
-Windows, Linux and macOS.
+## Licence 
+FrankenCore was at the start a copy of the BfaCore and therefore under the same license.
+* BfACore source components are released under the [GNU AGPL v3](https://github.com/Boralus-Project/BfaCore-Reforged/blob/main/LICENSE)
+<br>
+<br>
 
 
