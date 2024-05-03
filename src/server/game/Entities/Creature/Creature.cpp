@@ -1479,10 +1479,7 @@ void Creature::SelectLevel()
     if (HasScalableLevels())
     {
         level = maxlevel; // hackfix for wrong scaling values.
-		if (minlevel == 1 && maxlevel == 120)
-		{
-			level = 60;
-		}
+		level = 121;
         CreatureLevelScaling const* scaling = cInfo->GetLevelScaling(GetMap()->GetDifficultyID());
 
         SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);

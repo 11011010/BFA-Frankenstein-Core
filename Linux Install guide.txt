@@ -25,6 +25,19 @@ cd boost_1_67_0
 #Install Boost 1.67. Replace cores with the number of cores you like to use ( for Ex. -j$4 )
 #This will take some time depending on youer hardware so take a coffee, walk the dog or whatever you like.
 ./b2 --with=all -j$(cores) install
+openssl preparations
+wget https://www.openssl.org/source/openssl-1.0.2n.tar.gz
+gzip -d openssl-1.0.2n.tar.gz
+cd openssl-1.0.2n
+export CFLAGS=-fPIC
+./config shared --openssldir=/usr/local/openssl-1.0.2n
+make
+make test
+make install
+
+TC preparations
+cd TrinityCore/build
+
 
 #Create a normal user for the server for Ex. adduser trinityuser
 adduser your_username
@@ -51,6 +64,9 @@ cd build
 
 #Configure cmake 
 cmake ../ -DCMAKE_INSTALL_PREFIX=/home/$USER/folderyouwanttheserverinstalledin -DTOOLS=0
+or try 
+cmake ../ -DCMAKE_INSTALL_PREFIX=/XXX/WoW/server_dynamic -DWITH_WARNINGS=1 -DOPENSSL_LIBRARIES=/usr/local/openssl-1.0.2n/lib -DOPENSSL_INCLUDE_DIR=/usr/local/openssl-1.0.2n/include -DSCRIPTS=dynamic -DOPENSSL_ROOT_DIR=/usr/local/openssl-1.0.2n -DOPENSSL_CRYPTO_LIBRARIES=/usr/local/openssl-1.0.2n/lib/libcrypto.a -DOPENSSL_SSL_LIBRARIES=/usr/local/openssl-1.0.2n/lib/libssl.a
+
 
 #Compile the core. Replace cores with the number of cores you like to use ( for Ex. -j$4 )
 make -j$cores
