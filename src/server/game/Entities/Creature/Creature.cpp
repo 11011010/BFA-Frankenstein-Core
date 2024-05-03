@@ -1478,7 +1478,7 @@ void Creature::SelectLevel()
 	level = maxlevel;
     if (HasScalableLevels())
     {
-        level = maxlevel;
+        level = maxlevel; // hackfix for wrong scaling values.
 		if (minlevel == 1 && maxlevel == 120)
 		{
 			level = 60;
