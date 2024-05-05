@@ -1494,6 +1494,8 @@ void Creature::SelectLevel()
         }
         level = maxlevel;
 
+if(scaling->maxlevel == 120)
+{
         int expansion = cInfo->GetHealthScalingExpansion();
         switch (expansion) {
         case 0:
@@ -1544,12 +1546,17 @@ void Creature::SelectLevel()
             LevelMin = scaling->MinLevel;
         }
  
-   SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), LevelMax);
-   SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), LevelMin);
+	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), LevelMax);
+	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), LevelMin);
+}else
+{
+	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
+	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
+}
+
    //hackfix for wrong scaling, can be removed after all scaling is finished.
    //hackfix for wrong scaling, can be removed after all scaling is finished.
-      //  SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
-   //SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
+
         int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
         int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
 
