@@ -1475,16 +1475,81 @@ void Creature::SelectLevel()
     uint8 minlevel = std::min(levels.first, levels.second);
     uint8 maxlevel = std::max(levels.first, levels.second);
     uint8 level = minlevel == maxlevel ? minlevel : urand(minlevel, maxlevel);
-	level = maxlevel;
+    CreatureLevelScaling const* scaling = cInfo->GetLevelScaling(GetMap()->GetDifficultyID());
+	
+	//hackfix for wrong scaling, can be removed after all scaling is finished.
+    //hackfix for wrong scaling, can be removed after all scaling is finished..
+   // SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
+    uint8 LevelMax = 120;
+    uint8 LevelMin = 1;
     if (HasScalableLevels())
     {
-        level = maxlevel; // hackfix for wrong scaling values.
-		level = 121;
-        CreatureLevelScaling const* scaling = cInfo->GetLevelScaling(GetMap()->GetDifficultyID());
+        if (scaling->MinLevel == 1)
+        {
+            LevelMin = minlevel;
+        }
+        else
+        {
+            LevelMin = scaling->MinLevel;
+        }
+        level = maxlevel;
 
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
+        int expansion = cInfo->GetHealthScalingExpansion();
+        switch (expansion) {
+        case 0:
+            level = 60;
+            LevelMax= 63;
+            break;
 
+        case 1:
+            level = 70;
+            LevelMax = 73;
+            break;
+
+        case 2:
+            level = 80;
+            LevelMax = 83;
+            break;
+
+        case 3:
+            level = 90;
+            LevelMax = 93;
+            break;
+
+        case 4:
+            level = 90;
+            LevelMax= 93;
+            break;
+
+        case 5:
+            level = 100;
+            LevelMax = 103;
+            break;
+
+        case 6:
+            level = 110;
+            LevelMax = 113;
+            LevelMin = scaling->MinLevel;
+            break;
+
+        case 7:
+            level = 120;
+            LevelMax = 123;
+            LevelMin = scaling->MinLevel;
+            break;
+
+        default:
+            level = 120;
+            LevelMax = 123;
+            LevelMin = scaling->MinLevel;
+        }
+ 
+   SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), LevelMax);
+   SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), LevelMin);
+   //hackfix for wrong scaling, can be removed after all scaling is finished.
+   //hackfix for wrong scaling, can be removed after all scaling is finished.
+      //  SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
+   //SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
         int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
         int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
 
