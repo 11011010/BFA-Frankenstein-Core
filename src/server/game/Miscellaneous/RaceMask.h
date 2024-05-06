@@ -56,7 +56,7 @@ enum Races
     RACE_LIGHTFORGED_DRAENEI    = 30,
     RACE_ZANDALARI_TROLL        = 31,
     RACE_KUL_TIRAN              = 32,
-    //RACE_THIN_HUMAN           = 33,
+   // RACE_THIN_HUMAN           = 33,
     RACE_DARK_IRON_DWARF        = 34, // RaceMask bit 11
     RACE_VULPERA                = 35, // RaceMask bit 12
     RACE_MAGHAR_ORC             = 36, // RaceMask bit 13

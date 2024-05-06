@@ -185,8 +185,8 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-            MinLevel = 0;
-            MaxLevel = 0;
+            MinLevel = 1;
+            MaxLevel = 120;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
