@@ -40,6 +40,7 @@ public:
     {
         if (player->getLevel() != MAX_LEVEL)
             return;
+		
 
         QueryResult result = LoginDatabase.PQuery("SELECT recruiter, recruiter_rewarded FROM account WHERE id = %u", player->GetSession()->GetAccountId());
         if (!result)
@@ -404,9 +405,15 @@ class PlayerSavingOnLogoutFix : public PlayerScript
 {
 public:
     PlayerSavingOnLogoutFix() : PlayerScript("PlayerSavingOnLogoutFix") { }
+	
 
+		
     void OnLogout(Player* player) override
     {
+        if (player->getLevel() > MAX_LEVEL)  //above max level server login full crash fix!
+        {
+            player->SetLevel(MAX_LEVEL);
+        }
         ObjectAccessor::SaveAllPlayers();
     }
 };
