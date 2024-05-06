@@ -2999,8 +2999,13 @@ public:
         if (killer->getClass() != CLASS_WARRIOR)
             return;
 
-        if (!killer->HasAura(SPELL_WARRRIOR_WAR_MACHINE_BUFF && killer->HasAura(SPELL_WARRIOR_WAR_MACHINE)))
-            killer->CastSpell(nullptr, SPELL_WARRRIOR_WAR_MACHINE_BUFF, true);
+        if (killer->HasAura(SPELL_WARRIOR_WAR_MACHINE))
+        {
+            if (!killer->HasAura(SPELL_WARRRIOR_WAR_MACHINE_BUFF))
+            {
+                killer->CastSpell(nullptr, SPELL_WARRRIOR_WAR_MACHINE_BUFF, true);
+            }
+        }
     }
 
     void OnCreatureKill(Player* killer, Creature* killed)
@@ -3008,8 +3013,15 @@ public:
         if (killer->getClass() != CLASS_WARRIOR)
             return;
 
-        if (!killer->HasAura(SPELL_WARRRIOR_WAR_MACHINE_BUFF && killer->HasAura(SPELL_WARRIOR_WAR_MACHINE)))
-            killer->CastSpell(nullptr, SPELL_WARRRIOR_WAR_MACHINE_BUFF, true);
+        if (killer->HasAura(SPELL_WARRIOR_WAR_MACHINE))
+        {
+            if (!killer->HasAura(SPELL_WARRRIOR_WAR_MACHINE_BUFF))
+            {
+                killer->CastSpell(nullptr, SPELL_WARRRIOR_WAR_MACHINE_BUFF, true);
+            }
+        }
+          
+               
     }
 };
 
