@@ -1494,7 +1494,7 @@ void Creature::SelectLevel()
         }
         level = maxlevel;
 
-if(scaling->MaxLevel == 120)
+if(scaling->MaxLevel == 120 || scaling->MaxLevel == 100)
 {
         int expansion = cInfo->GetHealthScalingExpansion();
         switch (expansion) {
