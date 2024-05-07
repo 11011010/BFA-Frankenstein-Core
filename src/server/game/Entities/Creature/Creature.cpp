@@ -185,8 +185,8 @@ CreatureLevelScaling const* CreatureTemplate::GetLevelScaling(uint8 difficulty) 
     {
         DefaultCreatureLevelScaling()
         {
-            MinLevel = 1;
-            MaxLevel = 120;
+            MinLevel = 0;
+            MaxLevel = 0;
             DeltaLevelMin = 0;
             DeltaLevelMax = 0;
             ContentTuningID = 0;
@@ -1482,6 +1482,7 @@ void Creature::SelectLevel()
    // SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
     uint8 LevelMax = 120;
     uint8 LevelMin = 1;
+	level = maxlevel;
     if (HasScalableLevels())
     {
         if (scaling->MinLevel == 1)
@@ -1492,79 +1493,78 @@ void Creature::SelectLevel()
         {
             LevelMin = scaling->MinLevel;
         }
-        level = maxlevel;
+        
+			if(scaling->MaxLevel == 120 || scaling->MaxLevel == 100)
+			{
+			int expansion = cInfo->GetHealthScalingExpansion();
+			switch (expansion) {
+			case 0:
+				level = 60;
+				LevelMax= 63;
+				break;
 
-if(scaling->MaxLevel == 120 || scaling->MaxLevel == 100)
-{
-        int expansion = cInfo->GetHealthScalingExpansion();
-        switch (expansion) {
-        case 0:
-            level = 60;
-            LevelMax= 63;
-            break;
+			case 1:
+				level = 70;
+				LevelMax = 73;
+				break;
 
-        case 1:
-            level = 70;
-            LevelMax = 73;
-            break;
+			case 2:
+				level = 80;
+				LevelMax = 83;
+				break;
 
-        case 2:
-            level = 80;
-            LevelMax = 83;
-            break;
+			case 3:
+				level = 90;
+				LevelMax = 93;
+				break;
 
-        case 3:
-            level = 90;
-            LevelMax = 93;
-            break;
+			case 4:
+				level = 90;
+				LevelMax= 93;
+				break;
 
-        case 4:
-            level = 90;
-            LevelMax= 93;
-            break;
+			case 5:
+				level = 100;
+				LevelMax = 103;
+				break;
 
-        case 5:
-            level = 100;
-            LevelMax = 103;
-            break;
+			case 6:
+				level = 110;
+				LevelMax = 113;
+				LevelMin = scaling->MinLevel;
+				break;
 
-        case 6:
-            level = 110;
-            LevelMax = 113;
-            LevelMin = scaling->MinLevel;
-            break;
+			case 7:
+				level = 120;
+				LevelMax = 123;
+				LevelMin = scaling->MinLevel;
+				break;
 
-        case 7:
-            level = 120;
-            LevelMax = 123;
-            LevelMin = scaling->MinLevel;
-            break;
-
-        default:
-            level = 120;
-            LevelMax = 123;
-            LevelMin = scaling->MinLevel;
-        }
+			default:
+				level = 120;
+				LevelMax = 123;
+				LevelMin = scaling->MinLevel;
+			}
  
 	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), LevelMax);
 	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), LevelMin);
-}else
-{
-	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
-	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
+	}else
+	{
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), scaling->MaxLevel);
+		SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMin), scaling->MinLevel);
+	}
+
+   //hackfix for wrong scaling, can be removed after all scaling is finished.
+   //hackfix for wrong scaling, can be removed after all scaling is finished.
+
+    int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
+    int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
+
+    int8 delta = mindelta == maxdelta ? mindelta : irand(mindelta, maxdelta);
+
+    SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
+    SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), scaling->ContentTuningID);
 }
-
-   //hackfix for wrong scaling, can be removed after all scaling is finished.
-   //hackfix for wrong scaling, can be removed after all scaling is finished.
-
-        int8 mindelta = std::min(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
-        int8 maxdelta = std::max(scaling->DeltaLevelMax, scaling->DeltaLevelMin);
-
-        int8 delta = mindelta == maxdelta ? mindelta : irand(mindelta, maxdelta);
-
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelDelta), delta);
-        SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ContentTuningID), scaling->ContentTuningID);
-    }
 
     SetLevel(level);
 
