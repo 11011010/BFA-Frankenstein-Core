@@ -1483,8 +1483,11 @@ void Creature::SelectLevel()
     uint8 LevelMax = 120;
     uint8 LevelMin = 1;
 	level = maxlevel;
+	
     if (HasScalableLevels())
     {
+		level = scaling->MaxLevel;
+		
         if (scaling->MinLevel == 1)
         {
             LevelMin = minlevel;

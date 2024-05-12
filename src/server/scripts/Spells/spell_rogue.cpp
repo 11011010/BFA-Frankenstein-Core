@@ -275,7 +275,13 @@ class spell_rog_mutilate : public SpellScript
         if (caster->HasAura(5374) || caster->HasAura(27576))
             caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
         if (caster->HasAura(14190))
-            caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
+        {
+           
+            if (PROC_HIT_CRITICAL)
+            {
+                caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
+            }
+        }
 
         caster->ModifyPower(POWER_COMBO_POINTS, -3);
     }
