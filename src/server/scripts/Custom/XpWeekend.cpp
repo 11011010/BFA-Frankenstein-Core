@@ -22,11 +22,7 @@
         player->getRace() == RACE_DARK_IRON_DWARF || 
         player->getRace() == RACE_MAGHAR_ORC)
     {
-        float reducedAmount = amount * (1 - reductionPercentage);
-        
-        // Make sure the new amount is not less than 0
-        if (reducedAmount < 0) reducedAmount = 0;
-        
+        float reducedAmount = amount * (1 - reductionPercentage);        
         amount = static_cast<uint32>(reducedAmount);    
     }
 
