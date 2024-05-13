@@ -68,6 +68,14 @@ LevelScalingMax = 93
 WHERE c.map = 870;
 
 
+##MOP panda starting area seems to be the sweetspot here.
+UPDATE creature_template_scaling ct
+JOIN creature c ON ct.Entry = c.id
+SET LevelScalingMin = 1,
+LevelScalingMax = 20
+WHERE c.map = 860;
+
+
 ## dreanor no need for -x adjustment seems to be fine
 UPDATE creature_template_scaling ct
 JOIN creature c ON ct.Entry = c.id

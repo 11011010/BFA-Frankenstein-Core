@@ -1542,11 +1542,6 @@ void Creature::SelectLevel()
 				LevelMax = 123;
 				LevelMin = scaling->MinLevel;
 				break;
-
-			default:
-				level = 120;
-				LevelMax = 123;
-				LevelMin = scaling->MinLevel;
 			}
  
 	SetUpdateFieldValue(m_values.ModifyValue(&Unit::m_unitData).ModifyValue(&UF::UnitData::ScalingLevelMax), LevelMax);
