@@ -4,7 +4,7 @@
 
 
 ## Why FrankensteinCore?
-* A "playable" server is online ( 07.04.2024 only open for testers ).
+* A "playable" server is online ( 13.05.2024 only open for testers ).
 * OpenSource
 * Everybody can participate
 * Hopefully Most complete Bfa source
@@ -36,7 +36,7 @@ If you want to contribute to the project feel free to join us on our Discord ser
 * Visual Studio 2022
 
 ## Requirement Linux
-See install guide.
+See install guide. Not compiling not working easy, needs work.
 <br>
 
 ## Link for discord.
