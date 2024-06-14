@@ -4,7 +4,7 @@
 
 
 ## Why FrankensteinCore?
-* A "playable" server is online (31.05.2024 only open for testers ).
+* 14.06.2024 test phase ended, release up to lvl 60 next phase, tba.
 * OpenSource
 * Everybody can participate
 * Hopefully Most complete Bfa source
