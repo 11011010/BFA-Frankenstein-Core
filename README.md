@@ -30,7 +30,7 @@ If you want to contribute to the project feel free to join us on our Discord ser
 
 ## Requirement Windows 
 * CMake : ≥ 3.20
-* Boost : 1.67 to 1.72.0 full.
+* Boost : 1.66 - 167
 * MySQL : 5.7 or 8 CE
 * OpenSSL : 1.1.1L
 * Visual Studio 2022
