@@ -32,7 +32,7 @@ If you want to contribute to the project feel free to join us on our Discord ser
 * CMake : ≥ 3.20
 * Boost : 1.66 - 167
 * MySQL : 5.7 or 8 CE
-* OpenSSL : 1.1.1L
+* OpenSSL : 1.1.1W
 * Visual Studio 2022
 
 ## Requirement Linux
