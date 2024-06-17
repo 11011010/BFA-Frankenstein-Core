@@ -30,13 +30,13 @@ If you want to contribute to the project feel free to join us on our Discord ser
 
 ## Requirement Windows 
 * CMake : ≥ 3.20
-* Boost : 1.66 - 167
+* Boost : 1.66 -  boost_1_66_0-bin-msvc-all-32-64.7z  - https://sourceforge.net/projects/boost/files/boost-binaries/1.66.0/
 * MySQL : 5.7 or 8 CE
-* OpenSSL : 1.1.1W
+* OpenSSL : 1.1.1W - when you have trouble findingit just let me know on discord.
 * Visual Studio 2022
 
 ## Requirement Linux
-See install guide. Not compiling not working easy, needs work.
+See install guide. Compiling not working, needs work.
 <br>
 
 ## Link for discord.
