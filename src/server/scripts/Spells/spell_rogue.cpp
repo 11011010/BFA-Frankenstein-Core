@@ -274,7 +274,7 @@ class spell_rog_mutilate : public SpellScript
 
         if (caster->HasAura(5374) || caster->HasAura(27576))
             caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
-        if (caster->HasAura(14190))
+        if (caster->HasAura(14189)) // 14190 seal fate, proc is 14189, seems to work somehow
         {
            
             if (PROC_HIT_CRITICAL)
