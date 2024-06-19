@@ -968,10 +968,6 @@ void PetBattle::Finish(uint32 winnerTeamID, bool aborted, bool ignoreAbandonPena
 
             // Send battle result
             CombatResult = aborted ? PET_BATTLE_RESULT_ABANDON : currentTeamID == winnerTeamID ? PET_BATTLE_RESULT_WON : PET_BATTLE_RESULT_LOOSE;
-            player->GetSession()->SendPetBattleInitialUpdate(this);// test
-            player->GetSession()->SendPetBattleInitialUpdate(this); //test
-
-
             player->GetSession()->SendPetBattleFinalRound(this);
             //player->SetControlled(false, UNIT_STATE_ROOT);
 			player->SetControlled(true, UNIT_STATE_ROOT); //as long as flags are not fixed player must relog!
