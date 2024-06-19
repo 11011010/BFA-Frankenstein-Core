@@ -551,29 +551,6 @@ public:
 };
 
 
-/* BfaCore Free Repack Welcome message */
-/*class BfaCoreFreeRepackWelcome : public PlayerScript
-{
-public:
-    BfaCoreFreeRepackWelcome() : PlayerScript("BfaCoreFreeRepackWelcome") { }
-
-    void OnLogin(Player* player, bool) override
-    {
-        ChatHandler(player->GetSession()).SendSysMessage("|cffFF0000 This is BfaCore Free Repack. Donate to remove ads and limitations.|r");
-        ChatHandler(player->GetSession()).SendSysMessage("|cffFF0000 BfaCore official discord: https://discord.gg/57D59ed ShadowCoreTeam@yahoo.com|r");
-    }
-};*/
-
-/*class BFACoreCredits : public PlayerScript
-{
-public:
-    BFACoreCredits() : PlayerScript("BFACoreCredits") { }
-
-    void OnLogin(Player* player, bool) override
-    {
-        ChatHandler(player->GetSession()).SendSysMessage("|cffFF0000 This core is powered from BFACore team. https://discord.gg/57D59ed");
-    }
-};*/
 
 void AddSC_custom_player_script()
 {

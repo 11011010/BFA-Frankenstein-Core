@@ -279,6 +279,7 @@ class achievement_killed_exp_or_honor_target : public AchievementCriteriaScript
         }
 };
 
+
 class achievement_a_test_of_valor : public AchievementCriteriaScript
 {
 public:

@@ -31,7 +31,6 @@ void Trinity::Banner::Show(char const* applicationName, void(*log)(char const* t
     log("| $$  \\ $| $$    /$$__  $| $$    $| $$  | $| $$     | $$_____/                        ");
     log("| $$$$$$$| $$   |  $$$$$$|  $$$$$$|  $$$$$$| $$     |  $$$$$$$                         ");
     log("|_______/|__/    \\_______/\\______/ \\______/|__/      \\_______/                     ");
-    log("https://discord.gg/57D59ed ShadowCoreTeam@yahoo.com \n                                 ");
 
     if (logExtraInfo)
         logExtraInfo();

@@ -306,6 +306,7 @@ bool PetBattleTeam::Update()
 
     if (PetBattleInstance->BattleStatus == PET_BATTLE_STATUS_FINISHED)
     {
+
         Ready = false;
         return false;
     }
@@ -967,9 +968,13 @@ void PetBattle::Finish(uint32 winnerTeamID, bool aborted, bool ignoreAbandonPena
 
             // Send battle result
             CombatResult = aborted ? PET_BATTLE_RESULT_ABANDON : currentTeamID == winnerTeamID ? PET_BATTLE_RESULT_WON : PET_BATTLE_RESULT_LOOSE;
+            player->GetSession()->SendPetBattleInitialUpdate(this);// test
+            player->GetSession()->SendPetBattleInitialUpdate(this); //test
+
 
             player->GetSession()->SendPetBattleFinalRound(this);
-            player->SetControlled(false, UNIT_STATE_ROOT);
+            //player->SetControlled(false, UNIT_STATE_ROOT);
+			player->SetControlled(true, UNIT_STATE_ROOT); //as long as flags are not fixed player must relog!
             //player->AddDelayedEvent(10, [player]() -> void { if (player) player->SummonLastSummonedBattlePet(); });
             player->_petBattleId.Clear();
             player->GetSession()->SendBattlePetJournal();
@@ -986,8 +991,8 @@ void PetBattle::Finish(uint32 winnerTeamID, bool aborted, bool ignoreAbandonPena
                     auto currentPet = Teams[currentTeamID]->TeamPets[i];
                     if (!currentPet)
                         continue;
-
-                    /*auto wildPet = ObjectAccessor::GetObjectInOrOutOfWorld(currentPet->OriginalCreature, static_cast<Creature*>(nullptr));
+						/*
+                    auto wildPet = ObjectAccessor::GetObjectInOrOutOfWorld(currentPet->OriginalCreature, static_cast<Creature*>(nullptr));
                     if (!wildPet)
                         continue;
 
@@ -995,7 +1000,7 @@ void PetBattle::Finish(uint32 winnerTeamID, bool aborted, bool ignoreAbandonPena
                     wildPet->SetControlled(false, UNIT_STATE_ROOT);
                     wildPet->_petBattleId.Clear();
 
-                    sWildBattlePetMgr->LeaveBattle(wildPet, winnerTeamID != PET_BATTLE_PVE_TEAM_ID);*/
+                    sWildBattlePetMgr->LeaveBattle(wildPet, winnerTeamID != PET_BATTLE_PVE_TEAM_ID); */
                 }
             }
         }

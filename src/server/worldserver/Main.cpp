@@ -338,7 +338,7 @@ extern int main(int argc, char** argv)
         TC_LOG_INFO("server.worldserver", "Starting up anti-freeze thread (%u seconds max stuck time)...", coreStuckTime);
     }
 
-    TC_LOG_INFO("server.worldserver", "BfaCore official discord: https://discord.gg/57D59ed ShadowCoreTeam@yahoo.com");
+    TC_LOG_INFO("server.worldserver", "BfaCore");
     TC_LOG_INFO("server.worldserver", "%s (worldserver-daemon) ready...", GitRevision::GetFullVersion());
     
     sScriptMgr->OnStartup();
