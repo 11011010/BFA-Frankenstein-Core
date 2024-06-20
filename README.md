@@ -13,7 +13,9 @@ The goal of the project is to reproduce the World of Warcraft© game world in a 
 but with improvments such as balancing and better low level scaling.
 
 We have joined with a support team to mange the server, the support team and dev team are two different groups.
-
+# What to expect when you play BFA?
+*Bugs, there is no way to fix everything and it is not my short time goal. 
+*A playable mostly blizzlike experience, but the low level balancing will not be blizzlike.
 
 <br>
 
