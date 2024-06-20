@@ -561,13 +561,11 @@ void AddSC_custom_player_script()
     RegisterPlayerScript(On120Arrival);             // TEMP FIX! remove it when bfa starting is properly fixed.
     RegisterPlayerScript(WorgenRunningWild);
     RegisterPlayerScript(PlayerSavingOnLogoutFix);
-<<<<<<< HEAD
+
     //RegisterPlayerScript(BfaCoreFreeRepackWelcome);
     //RegisterPlayerScript(BFACoreCredits);
-=======
 	new PlayerScript_Weekly_Spells();
 	RegisterPlayerScript(player_level_rewards);
 
->>>>>>> 38f05f7d (Merge pull request #28 from SargeroDeV/main)
 }
 
