@@ -1700,14 +1700,7 @@ class spell_dru_rip : public AuraScript
                 KingOfTheJungleBuff->ModStackAmount(-1);
 
             AuraRemoveMode removeMode = GetTargetApplication()->GetRemoveMode();
-            if (removeMode == AURA_REMOVE_BY_DEATH)
-            {
-                if (auto plr = caster->ToPlayer())
-                {
-                    if (plr->HasAura(202021))
-                        plr->RemoveSpellCooldown(5217, true);
-                }
-            }
+
             target->RemoveAurasDueToSpell(OpenWounds, caster->GetGUID());
         }
     }
