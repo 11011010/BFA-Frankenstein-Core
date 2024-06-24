@@ -1651,66 +1651,40 @@ private:
     int32 _usedComboPoints = 0;
 };
 
-class spell_dru_rip : public AuraScript
+// Rip - 1079
+// @Version : 7.1.0.22908
+class spell_dru_rip : public SpellScriptLoader
 {
-    PrepareAuraScript(spell_dru_rip);
+public:
+    spell_dru_rip() : SpellScriptLoader("spell_dru_rip") {}
 
-    enum MyEnum
+    class spell_dru_rip_AuraScript : public AuraScript
     {
-        OpenWounds = 210670,
-        KingOfTheJungleDummy = 203052,
-        KingOfTheJungle = 203059
+        PrepareAuraScript(spell_dru_rip_AuraScript);
+
+        void HandleApply(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
+        {
+            Unit* caster = GetCaster();
+            if (!caster)
+                return;
+
+            int8 _cp = caster->GetPower(POWER_COMBO_POINTS) + 1;
+            int32 dmg = aurEff->GetDamage() * _cp;
+
+            if (AuraEffect* aurEff = GetAura()->GetEffect(EFFECT_0))
+            {
+                aurEff->SetDamage(dmg);
+                GetAura()->SetNeedClientUpdateForTargets();
+            }
+
+            caster->SetPower(POWER_COMBO_POINTS, 0);
+        }
+
+        void Register() override
+        {
+            AfterEffectApply += AuraEffectApplyFn(spell_dru_rip_AuraScript::HandleApply, EFFECT_0, SPELL_AURA_PERIODIC_DAMAGE, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
+        }
     };
-
-    void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes mode)
-    {
-        if (auto caster = GetCaster())
-        {
-            if (caster->HasAura(210666)) // Open Wounds
-            {
-                if (auto target = GetUnitOwner())
-                    caster->CastSpell(target, OpenWounds, true);
-            }
-
-            if (caster->HasAura(KingOfTheJungleDummy))
-            {
-                if (mode & AURA_EFFECT_HANDLE_REAPPLY)
-                {
-                    if (Aura* KingOfTheJungleBuff = caster->GetAura(KingOfTheJungle))
-                    {
-                        KingOfTheJungleBuff->RefreshDuration();
-                        return;
-                    }
-                }
-
-                caster->CastSpell(caster, KingOfTheJungle, true);
-            }
-        }
-    }
-
-    void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
-    {
-        auto caster = GetCaster();
-        if (!caster)
-            return;
-
-        if (auto target = GetUnitOwner())
-        {
-            if (Aura* KingOfTheJungleBuff = caster->GetAura(KingOfTheJungle))
-                KingOfTheJungleBuff->ModStackAmount(-1);
-
-            AuraRemoveMode removeMode = GetTargetApplication()->GetRemoveMode();
-
-            target->RemoveAurasDueToSpell(OpenWounds, caster->GetGUID());
-        }
-    }
-
-    void Register() override
-    {
-        OnEffectApply += AuraEffectApplyFn(spell_dru_rip::OnApply, EFFECT_0, SPELL_AURA_PERIODIC_DAMAGE, AURA_EFFECT_HANDLE_REAL_OR_REAPPLY_MASK);
-        OnEffectRemove += AuraEffectRemoveFn(spell_dru_rip::OnRemove, EFFECT_0, SPELL_AURA_PERIODIC_DAMAGE, AURA_EFFECT_HANDLE_REAL);
-    }
-};
 
 enum BloodTalonsSpells
 {
