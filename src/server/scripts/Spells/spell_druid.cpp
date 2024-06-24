@@ -1668,8 +1668,10 @@ public:
             if (!caster)
                 return;
 
-            int8 _cp = caster->GetPower(POWER_COMBO_POINTS) + 1;
-            int32 dmg = aurEff->GetDamage() * _cp;
+           // int8 _cp = caster->GetPower(POWER_COMBO_POINTS) + 1;
+          //  int32 dmg = aurEff->GetDamage() * _cp;
+		    float _cp = (float)m_comboPoints / (float)caster->GetMaxPower(POWER_COMBO_POINTS);
+            int32 dmg = CalculatePct(dmg, multiplier * 100.f);
 
             if (AuraEffect* aurEff = GetAura()->GetEffect(EFFECT_0))
             {
