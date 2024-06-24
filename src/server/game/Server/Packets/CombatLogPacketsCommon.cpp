@@ -77,6 +77,10 @@ namespace WorldPackets
             TargetMinScalingLevel = uint8(creatureScaling->MinLevel);
             TargetMaxScalingLevel = uint8(creatureScaling->MaxLevel);
             TargetScalingLevelDelta = int8(attacker->m_unitData->ScalingLevelDelta);
+						if (TargetMinScalingLevel < attacker->getLevel() )
+			{
+				TargetLevel = attacker->getLevel();
+			}
             return true;
         }
 
@@ -96,6 +100,10 @@ namespace WorldPackets
             TargetMinScalingLevel =  uint8(creatureScaling->MinLevel);
             TargetMaxScalingLevel = uint8(creatureScaling->MaxLevel);
             TargetScalingLevelDelta = int8(target->m_unitData->ScalingLevelDelta);
+						if (TargetMinScalingLevel < attacker->getLevel() )
+			{
+				TargetLevel = attacker->getLevel();
+			}
             return true;
         }
 

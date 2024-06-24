@@ -2568,7 +2568,6 @@ void Spell::DoAllEffectOnTarget(TargetInfo* target)
         // Fill base damage struct (unitTarget - is real spell target)
         SpellNonMeleeDamage damageInfo(caster, unitTarget, m_spellInfo->Id, m_SpellVisual, m_spellSchoolMask, m_castId);
 
-
         // Check damage immunity
         if (unitTarget->IsImmunedToDamage(m_spellInfo))
         {
@@ -2587,7 +2586,6 @@ void Spell::DoAllEffectOnTarget(TargetInfo* target)
             procVictim |= PROC_FLAG_TAKEN_DAMAGE;
 
             m_damage = damageInfo.damage;
-			damageInfo.damage = damageInfo.damage;
 
             caster->DealSpellDamage(&damageInfo, true);
 
@@ -7553,7 +7551,6 @@ void Spell::DoAllEffectOnLaunchTarget(TargetInfo& targetInfo, float* multiplier)
 
             if (m_applyMultiplierMask & (1 << effect->EffectIndex))
             {
-				
                 m_damage = int32(m_damage * m_damageMultipliers[effect->EffectIndex]);
                 m_damageMultipliers[effect->EffectIndex] *= multiplier[effect->EffectIndex];
             }

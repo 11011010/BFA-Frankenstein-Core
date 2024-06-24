@@ -2197,7 +2197,10 @@ uint32 Item::GetItemLevel(ItemTemplate const* itemTemplate, BonusData const& bon
     if (ScalingStatDistributionEntry const* ssd = sScalingStatDistributionStore.LookupEntry(bonusData.ScalingStatDistribution))
     {
         if (fixedLevel)
+		{
             level = fixedLevel;
+
+		}
         else
             level = std::min(std::max(int32(level), ssd->MinLevel), ssd->MaxLevel);
 
@@ -2207,7 +2210,9 @@ uint32 Item::GetItemLevel(ItemTemplate const* itemTemplate, BonusData const& bon
 
         if (uint32 heirloomIlvl = uint32(sDB2Manager.GetCurveValueAt(ssd->PlayerLevelToItemLevelCurveID, level)))
             itemLevel = heirloomIlvl;
+
     }
+	
 
     itemLevel += bonusData.ItemLevelBonus;
 
