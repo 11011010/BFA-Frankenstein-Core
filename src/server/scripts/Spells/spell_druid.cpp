@@ -2227,7 +2227,8 @@ class spell_dru_thrash_cat : public SpellScript
         // This prevent awarding multiple Combo Points when multiple targets hit with Thrash AoE
         if (m_awardComboPoint)
             // Awards the caster 1 Combo Point
-            caster->ModifyPower(POWER_COMBO_POINTS, 1);
+            //caster->ModifyPower(POWER_COMBO_POINTS, 1);
+			caster->ModifyPower(POWER_COMBO_POINTS, sSpellMgr->GetSpellInfo(spell_dru_thrash_cat)->GetEffect(EFFECT_0)->BasePoints); 
 
         m_awardComboPoint = false;
     }
@@ -2278,7 +2279,9 @@ class spell_dru_shred : public SpellScript
 
         int32 damage = GetHitDamage();
         
-        caster->ModifyPower(POWER_COMBO_POINTS, 1);
+        //caster->ModifyPower(POWER_COMBO_POINTS, 1);
+		caster->ModifyPower(POWER_COMBO_POINTS, sSpellMgr->GetSpellInfo(spell_dru_shred)->GetEffect(EFFECT_0)->BasePoints);
+		
 
         // If caster is level >= 56, While stealthed or have Incarnation: King of the Jungle aura,
         // deals 50% increased damage (get value from the spell data)
