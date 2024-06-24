@@ -1669,7 +1669,8 @@ public:
                 return;
 
             int8 m_comboPoints = caster->GetPower(POWER_COMBO_POINTS) + 1;
-            int32 dmg = aurEff->GetDamage();
+           // int32 dmg = aurEff->GetDamage();
+			int32 dmg = GetHitDamage();
 		    float multiplier = (float)m_comboPoints / (float)caster->GetMaxPower(POWER_COMBO_POINTS);
             int32 newdmg = CalculatePct(dmg, multiplier * 100.f);
 			dmg = newdmg;
