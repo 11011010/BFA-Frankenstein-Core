@@ -273,13 +273,15 @@ class spell_rog_mutilate : public SpellScript
             return;
 
         if (caster->HasAura(5374) || caster->HasAura(27576))
-            caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
+			caster->ModifyPower(POWER_COMBO_POINTS, sSpellMgr->GetSpellInfo(spell_rog_mutilate)->GetEffect(EFFECT_2)->BasePoints); 
+           // caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
         if (caster->HasAura(14189)) // 14190 seal fate, proc is 14189, seems to work somehow
         {
            
             if (PROC_HIT_CRITICAL)
             {
-                caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
+                //caster->ToPlayer()->ModifyPower(POWER_COMBO_POINTS, 1);
+				caster->ModifyPower(POWER_COMBO_POINTS, sSpellMgr->GetSpellInfo(1329)->GetEffect(EFFECT_2)->BasePoints); 
             }
         }
 
@@ -1909,7 +1911,8 @@ class spell_rog_sinister_strike : public SpellScript
                     caster->DealSpellDamage(&dmg, false);
                     caster->SendSpellNonMeleeDamageLog(&dmg);
 
-                    caster->ModifyPower(POWER_COMBO_POINTS, 1);
+                    //caster->ModifyPower(POWER_COMBO_POINTS, 1);
+					caster->ModifyPower(POWER_COMBO_POINTS, sSpellMgr->GetSpellInfo(SPELL_ROGUE_SINISTER_STRIKE)->GetEffect(EFFECT_2)->BasePoints); 
                 }
             }
             else
