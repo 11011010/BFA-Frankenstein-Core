@@ -1,0 +1,16 @@
+REPLACE INTO `spell_areatrigger` (`SpellMiscId`, `AreaTriggerId`, `MoveCurveId`, `ScaleCurveId`, `MorphCurveId`, `FacingCurveId`, `AnimId`, `AnimKitId`, `DecalPropertiesId`, `TimeToTarget`, `TimeToTargetScale`, `VerifiedBuild`) VALUES (8537, 12676, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26365);
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES ('12676', '0', '4', '10', '10', '0', '0', '0', '0', 'at_sha_wind_rush_totem', '26365');
+UPDATE `areatrigger_template` SET `ScriptName`='at_sha_wind_rush_totem' WHERE (`Id`='12676');
+UPDATE `creature_template` SET `ScriptName`='npc_sha_tremor_totem' WHERE (`entry`='5913');
+UPDATE `creature_template` SET `ScriptName`='npc_sha_earthgrab_totem' WHERE (`entry`='60561');
+DELETE FROM spell_script_names WHERE spell_id = 51485;
+UPDATE `creature_template` SET `ScriptName`='npc_earth_grab_totem' WHERE (`entry`='60561');
+UPDATE `creature_template` SET `ScriptName`='npc_capacitor_totem' WHERE (`entry`='61245');
+UPDATE `creature_template` SET `ScriptName`='npc_resonance_totem' WHERE (`entry`='102392');
+UPDATE `creature_template` SET `ScriptName`='npc_liquid_magma_totem' WHERE (`entry`='97369');
+UPDATE `creature_template` SET `ScriptName`='npc_healing_tide_totem' WHERE (`entry`='59764');
+UPDATE `creature_template` SET `ScriptName`='npc_tailwind_totem' WHERE (`entry`='106321');
+UPDATE `creature_template` SET `ScriptName`='npc_ember_totem' WHERE (`entry`='106319');
+UPDATE `creature_template` SET `ScriptName`='npc_cloudburst_totem' WHERE (`entry`='78001');
+UPDATE `creature_template` SET `ScriptName`='npc_earthen_shield_totem' WHERE (`entry`='100943');
+UPDATE `creature_template` SET `ScriptName`='npc_ancestral_protection_totem' WHERE (`entry`='104818');

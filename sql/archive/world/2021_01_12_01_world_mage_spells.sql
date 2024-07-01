@@ -1,0 +1,6 @@
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES (2947, 0, 0, 8, 8, 0, 0, 0, 0, 'at_mage_rune_of_power', 31478);
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES (6211, 0, 0, 8, 8, 0, 0, 0, 0, 'at_mage_meteor_burn', 31478);
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES (8089, 4, 0, 8, 8, 4, 4, 0.3, 0.3, 'at_mage_meteor_timer', 31478);
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES (9397, 4, 0, 8, 8, 4, 4, 0.3, 0.3, 'at_mage_blizzard', 31478);
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES (6211, 0, 0, 8, 8, 0, 0, 0, 0, 'at_mage_meteor_burn', 31478);
+REPLACE INTO `areatrigger_template` (`Id`, `Type`, `Flags`, `Data0`, `Data1`, `Data2`, `Data3`, `Data4`, `Data5`, `ScriptName`, `VerifiedBuild`) VALUES ('12740', '0', '24', '8.5', '8.5', '0', '0', '0', '0', 'at_mage_frozen_orb', '31478');

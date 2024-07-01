@@ -1,0 +1,4 @@
+-- Spawn World Boss Humongris
+DELETE FROM `creature` WHERE (`id` = 108879);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnDifficulties`, `phaseUseFlags`, `PhaseId`, `PhaseGroup`, `terrainSwapMap`, `modelid`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `spawndist`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `unit_flags2`, `unit_flags3`, `dynamicflags`, `ScriptName`, `VerifiedBuild`) VALUES
+(3530000000003055, 108879, 1220, 0, 0, '0', 0, 0, 0, -1, 0, 0, 2435.59, 8254.55, 44.3088, 2.99236, 300, 0, 0, 10740, 0, 0, 0, 0, 0, 0, 0, '', 0);
