@@ -22,7 +22,7 @@ We have joined with a support team to mange the server, the support team and dev
 ## Support us
 
 * By testing our fixes 
-* By developing directly to the core
+* By developing directly to the core, the main dev is me and I suck. It will move but slowly.
 * By reporting bugs 
 * By making extra content (video tutorial for example)
 
