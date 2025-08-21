@@ -8,6 +8,10 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 OLD)
+endif()
+
 if(WIN32)
   set(BOOST_DEBUG ON)
   if(DEFINED ENV{BOOST_ROOT})

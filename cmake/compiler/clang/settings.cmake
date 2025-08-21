@@ -1,7 +1,9 @@
+include(CheckCXXSourceCompiles)
+
 # Set build-directive (used in core to tell which buildtype we used)
 target_compile_definitions(trinity-compile-option-interface
   INTERFACE
-    -D_BUILD_DIRECTIVE="$<CONFIG>")
+    -D_BUILD_DIRECTIVE="${CMAKE_BUILD_TYPE}")
 
 if(WITH_WARNINGS)
   target_compile_options(trinity-warning-interface
@@ -13,7 +15,7 @@ if(WITH_WARNINGS)
       -Wfatal-errors
       -Wno-mismatched-tags
       -Woverloaded-virtual)
- 
+
   if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 10)
     target_compile_options(trinity-warning-interface
       INTERFACE
@@ -33,11 +35,14 @@ endif()
 
 # -Wno-narrowing needed to suppress a warning in g3d
 # -Wno-deprecated-register is needed to suppress 185 gsoap warnings on Unix systems.
-# -Wno-deprecated-copy needed to suppress a warning in g3d
 target_compile_options(trinity-compile-option-interface
   INTERFACE
     -Wno-narrowing
     -Wno-deprecated-register)
+
+target_compile_definitions(trinity-compile-option-interface
+  INTERFACE
+    -DDEBUG=1)
 
 if (BUILD_SHARED_LIBS)
   # -fPIC is needed to allow static linking in shared libs.

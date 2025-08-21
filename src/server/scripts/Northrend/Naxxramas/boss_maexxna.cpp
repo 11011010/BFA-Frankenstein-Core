@@ -72,7 +72,7 @@ enum Events
 
 const float WEB_WRAP_MOVE_SPEED = 20.0f;
 
-struct WebTargetSelector : public std::unary_function<Unit*, bool>
+struct WebTargetSelector
 {
     WebTargetSelector(Unit* maexxna) : _maexxna(maexxna) {}
     bool operator()(Unit const* target) const
@@ -220,7 +220,7 @@ public:
             victimGUID = guid;
             if (Unit* victim = ObjectAccessor::GetUnit(*me, victimGUID))
             {
-                visibleTimer = (me->GetDistance2d(victim)/WEB_WRAP_MOVE_SPEED + 0.5f) * IN_MILLISECONDS;
+                visibleTimer = (me->GetDistance2d(victim)/WEB_WRAP_MOVE_SPEED + 0.5f) * AsUnderlyingType(IN_MILLISECONDS);
                 victim->CastSpell(victim, SPELL_WEB_WRAP, true, nullptr, nullptr, me->GetGUID());
             }
         }

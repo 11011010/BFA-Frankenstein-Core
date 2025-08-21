@@ -535,7 +535,7 @@ class CreatureGameObjectAreaTriggerScriptRegistrySwapHooks
     {
         auto evaluator = [&](std::unordered_map<ObjectGuid, ObjectType*>& objects)
         {
-            for (auto object : objects)
+            for (auto const& object : objects)
             {
                 // When the script Id of the script isn't removed in this
                 // context change, do nothing.
@@ -544,7 +544,7 @@ class CreatureGameObjectAreaTriggerScriptRegistrySwapHooks
             }
         };
 
-        AIFunctionMapWorker<typename std::decay<decltype(evaluator)>::type> worker(std::move(evaluator));
+        AIFunctionMapWorker<decltype(evaluator)> worker(evaluator);
         TypeContainerVisitor<decltype(worker), MapStoredObjectTypesContainer> containerVisitor(worker);
 
         containerVisitor.Visit(map->GetObjectsStore());

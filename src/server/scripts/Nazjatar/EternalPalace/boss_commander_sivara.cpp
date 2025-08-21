@@ -97,7 +97,7 @@ enum AreaTriggers
 
 const Position centerPos = { 298.54f, 153.91f, 1449.97f }; //40y
 
-struct noFrostauracheck : public std::unary_function<Unit*, bool >
+struct noFrostauracheck
 {
     noFrostauracheck() {}
 
@@ -107,7 +107,7 @@ struct noFrostauracheck : public std::unary_function<Unit*, bool >
     }
 };
 
-struct checkGms : public std::unary_function<Unit*, bool>
+struct checkGms
 {
     checkGms() {}
 
@@ -117,7 +117,7 @@ struct checkGms : public std::unary_function<Unit*, bool>
     }
 };
 
-struct noToxicauracheck : public std::unary_function<Unit*, bool>
+struct noToxicauracheck
 {
     noToxicauracheck() {}
 
@@ -128,7 +128,7 @@ struct noToxicauracheck : public std::unary_function<Unit*, bool>
 
 };
 
-struct tankSpecs : public std::unary_function<Unit*, bool>
+struct tankSpecs
 {
     tankSpecs() {}
 
@@ -145,7 +145,7 @@ struct tankSpecs : public std::unary_function<Unit*, bool>
     }
 };
 
-struct healSpecs : public std::unary_function<Unit*, bool>
+struct healSpecs
 {
     healSpecs() {}
 
@@ -162,7 +162,7 @@ struct healSpecs : public std::unary_function<Unit*, bool>
     }
 };
 
-struct dpsSpecs : public std::unary_function<Unit*, bool>
+struct dpsSpecs
 {
     dpsSpecs() {}
 

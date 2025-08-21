@@ -22,6 +22,7 @@
 #include "Realm.h"
 #include <array>
 #include <map>
+#include <shared_mutex>
 #include <vector>
 #include <unordered_set>
 
@@ -111,12 +112,12 @@ private:
         uint16 port, uint8 icon, RealmFlags flag, uint8 timezone, AccountTypes allowedSecurityLevel, float population);
 
     std::vector<RealmBuildInfo> _builds;
-    std::unique_ptr<boost::shared_mutex> _realmsMutex;
+    mutable std::shared_mutex _realmsMutex;
     RealmMap _realms;
     std::unordered_set<std::string> _subRegions;
     uint32 _updateInterval;
     std::unique_ptr<Trinity::Asio::DeadlineTimer> _updateTimer;
-    std::unique_ptr<boost::asio::ip::tcp_resolver> _resolver;
+    std::unique_ptr<Trinity::Asio::Resolver> _resolver;
 };
 
 #define sRealmList RealmList::Instance()

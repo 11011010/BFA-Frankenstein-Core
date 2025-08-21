@@ -99,7 +99,7 @@ const Position squallTrapPosition[3][17] =
      },
 };
 
-struct checkSpec : public std::unary_function<Unit*, bool>
+struct checkSpec
 {
     checkSpec() {}
 

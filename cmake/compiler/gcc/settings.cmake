@@ -1,12 +1,12 @@
 # Set build-directive (used in core to tell which buildtype we used)
 target_compile_definitions(trinity-compile-option-interface
   INTERFACE
-    -D_BUILD_DIRECTIVE="$<CONFIG>")
+    -D_BUILD_DIRECTIVE="${CMAKE_BUILD_TYPE}")
 
 set(GCC_EXPECTED_VERSION 6.3.0)
 
 if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS GCC_EXPECTED_VERSION)
-  message(FATAL_ERROR "GCC: BfaCore requires version ${GCC_EXPECTED_VERSION} to build but found ${CMAKE_CXX_COMPILER_VERSION}")
+  message(FATAL_ERROR "GCC: TrinityCore requires version ${GCC_EXPECTED_VERSION} to build but found ${CMAKE_CXX_COMPILER_VERSION}")
 endif()
 
 if(PLATFORM EQUAL 32)
@@ -57,7 +57,6 @@ if (BUILD_SHARED_LIBS)
   target_compile_options(trinity-hidden-symbols-interface
     INTERFACE
       -fvisibility=hidden)
-
   # Should break the build when there are TRINITY_*_API macros missing
   # but it complains about missing references in precompiled headers.
   # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--no-undefined")

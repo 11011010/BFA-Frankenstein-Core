@@ -52,6 +52,7 @@
 #include <openssl/opensslv.h>
 #include <openssl/crypto.h>
 #include <boost/asio/signal_set.hpp>
+#include <boost/dll/runtime_symbol_info.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/program_options.hpp>
 #include <google/protobuf/stubs/common.h>
@@ -89,7 +90,7 @@ public:
 
     static void Start(std::shared_ptr<FreezeDetector> const& freezeDetector)
     {
-        freezeDetector->_timer.expires_from_now(boost::posix_time::seconds(5));
+        freezeDetector->_timer.expires_after(std::chrono::seconds(5));
         freezeDetector->_timer.async_wait(std::bind(&FreezeDetector::Handler, std::weak_ptr<FreezeDetector>(freezeDetector), std::placeholders::_1));
     }
 
@@ -166,7 +167,7 @@ extern int main(int argc, char** argv)
         }
     );
 
-    OpenSSLCrypto::threadsSetup();
+    OpenSSLCrypto::threadsSetup(boost::dll::program_location().remove_filename());
 
     std::shared_ptr<void> opensslHandle(nullptr, [](void*) { OpenSSLCrypto::threadsCleanup(); });
 
@@ -378,7 +379,7 @@ void ShutdownCLIThread(std::thread* cliThread)
             // if CancelSynchronousIo fails with ERROR_NOT_FOUND then there was nothing to cancel, proceed with shutdown
             if (errorCode != ERROR_NOT_FOUND)
             {
-                LPSTR errorBuffer;
+                LPCSTR errorBuffer;
                 DWORD numCharsWritten = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_IGNORE_INSERTS,
                     nullptr, errorCode, 0, (LPTSTR)&errorBuffer, 0, nullptr);
                 if (!numCharsWritten)
@@ -387,7 +388,7 @@ void ShutdownCLIThread(std::thread* cliThread)
                 TC_LOG_DEBUG("server.worldserver", "Error cancelling I/O of CliThread, error code %u, detail: %s", uint32(errorCode), errorBuffer);
 
                 if (numCharsWritten)
-                    LocalFree(errorBuffer);
+                    LocalFree((LPSTR)errorBuffer);
 
                 // send keyboard input to safely unblock the CLI thread
                 INPUT_RECORD b[4];
@@ -488,7 +489,7 @@ void FreezeDetector::Handler(std::weak_ptr<FreezeDetector> freezeDetectorRef, bo
                 ABORT();
             }
 
-            freezeDetector->_timer.expires_from_now(boost::posix_time::seconds(1));
+            freezeDetector->_timer.expires_after(std::chrono::seconds(1));
             freezeDetector->_timer.async_wait(std::bind(&FreezeDetector::Handler, freezeDetectorRef, std::placeholders::_1));
         }
     }

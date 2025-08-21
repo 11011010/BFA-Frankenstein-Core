@@ -1,4 +1,4 @@
-# Copyright (C) 2020 BfaCore
+# This file is based on TrinityCore Project. See AUTHORS file for Copyright information
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -8,8 +8,7 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-# We require CMake >= 3.2
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.10)
 
 # add this options before PROJECT keyword
 set(CMAKE_DISABLE_SOURCE_CHANGES ON)
@@ -18,17 +17,16 @@ set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 # Set projectname (must be done AFTER setting configurationtypes)
 project(BfaCore)
 
+# Set C++ standard to C++20
+set(CMAKE_CXX_STANDARD 20)
+
 # CMake policies (can not be handled elsewhere)
 cmake_policy(SET CMP0005 NEW)
-if (CMAKE_VERSION VERSION_LESS "3.16.0")
-  cmake_policy(SET CMP0043 OLD) # Disable 'Ignore COMPILE_DEFINITIONS_<Config> properties'
-else()
-  cmake_policy(SET CMP0043 NEW) # Cotire isn't used so set to NEW
-endif()
+cmake_policy(SET CMP0043 NEW) # Ignore COMPILE_DEFINITIONS_<Config> properties
 cmake_policy(SET CMP0054 NEW) # Only interpret if() arguments as variables or keywords when unquoted - prevents intepreting if (SOME_STRING_VARIABLE MATCHES "MSVC") as if (SOME_STRING_VARIABLE MATCHES "1")
-
-if(POLICY CMP0074)
-  cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
+cmake_policy(SET CMP0074 NEW) # find_package() uses <PackageName>_ROOT variables
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.27.0")
+	cmake_policy(SET CMP0144 NEW) # find_package uses upper-case <PACKAGENAME>_ROOT variables
 endif()
 
 # Set RPATH-handing (CMake parameters)
@@ -37,21 +35,18 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH 0)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH 1)
 
+# Set output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
 # set macro-directory
 list(APPEND CMAKE_MODULE_PATH
   "${CMAKE_SOURCE_DIR}/cmake/macros")
 
-if (CMAKE_VERSION VERSION_LESS "3.16.0")
-  list(APPEND CMAKE_MODULE_PATH
-          "${CMAKE_SOURCE_DIR}/dep/cotire/CMake")
-endif()
-
 # build in Release-mode by default if not explicitly set
-if(CMAKE_GENERATOR STREQUAL "Ninja Multi-Config")
-  set(CMAKE_DEFAULT_BUILD_TYPE "RelWithDebInfo" CACHE INTERNAL "")
-endif()
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+if( NOT CMAKE_BUILD_TYPE )
+  set(CMAKE_BUILD_TYPE "Release")
 endif()
 
 include(CheckCXXSourceRuns)
@@ -72,12 +67,13 @@ include(CheckPlatform)
 
 include(GroupSources)
 include(AutoCollect)
+include(Macros)
 
 find_package(PCHSupport)
 find_package(MySQL)
 
 if(NOT WITHOUT_GIT)
-  find_package(Git)
+  find_package(Git 1.7)
 endif()
 
 # Find revision ID and hash of the sourcetree
