@@ -392,10 +392,10 @@ class spell_pal_crusader_strike : public SpellScript
         if (caster->HasAura(SPELL_PALADIN_CRUSADERS_MIGHT))
         {
             if (caster->GetSpellHistory()->HasCooldown(SPELL_PALADIN_HOLY_SHOCK_GENERIC))
-                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HOLY_SHOCK_GENERIC, -1.5 * IN_MILLISECONDS);
+                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HOLY_SHOCK_GENERIC, -1.5 * AsUnderlyingType(IN_MILLISECONDS));
 
             if (caster->GetSpellHistory()->HasCooldown(SPELL_PALADIN_LIGHT_OF_DAWN))
-                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_LIGHT_OF_DAWN, -1.5 * IN_MILLISECONDS);
+                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_LIGHT_OF_DAWN, -1.5 * AsUnderlyingType(IN_MILLISECONDS));
         }
     }
 
@@ -696,7 +696,7 @@ class spell_pal_divine_storm : public SpellScript
         if (caster->HasAura(SPELL_PALADIN_FIST_OF_JUSTICE_RETRI))
         {
             if (caster->GetSpellHistory()->HasCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE))
-                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE, -7.5 * IN_MILLISECONDS);
+                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE, -7.5 * AsUnderlyingType(IN_MILLISECONDS));
         }
 
         if (caster->HasAura(SPELL_PALADIN_DIVINE_PURPOSE_RET_AURA))
@@ -737,7 +737,7 @@ class spell_pal_templar_s_verdict : public SpellScript
         if (caster->HasAura(SPELL_PALADIN_FIST_OF_JUSTICE_RETRI))
         {
             if (caster->GetSpellHistory()->HasCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE))
-                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE, -7.5 * IN_MILLISECONDS);
+                caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE, -7.5 * AsUnderlyingType(IN_MILLISECONDS));
         }
 
         if (caster->HasAura(SPELL_PALADIN_DIVINE_PURPOSE_RET_AURA))
@@ -1001,7 +1001,7 @@ class spell_pal_word_of_glory : public SpellScript
             if (caster->HasAura(SPELL_PALADIN_FIST_OF_JUSTICE_RETRI))
             {
                 if (caster->GetSpellHistory()->HasCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE))
-                    caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE, -7.5 * IN_MILLISECONDS);
+                    caster->GetSpellHistory()->ModifyCooldown(SPELL_PALADIN_HAMMER_OF_JUSTICE, -7.5 * AsUnderlyingType(IN_MILLISECONDS));
             }
         }
     }
