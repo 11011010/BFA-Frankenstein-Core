@@ -3975,6 +3975,14 @@ std::vector<SpellPowerCost> SpellInfo::CalcPowerCost(Unit const* caster, SpellSc
 
             // Base powerCost
             int32 powerCost = power->ManaCost;
+            
+            // For combo point spells, use actual combo points instead of base cost
+            if (power->PowerType == POWER_COMBO_POINTS && NeedsComboPoints())
+            {
+                if (Player const* playerCaster = caster->ToPlayer())
+                    powerCost = playerCaster->GetPower(POWER_COMBO_POINTS);
+            }
+            
             // PCT cost from total amount
             if (power->PowerCostPct)
             {
