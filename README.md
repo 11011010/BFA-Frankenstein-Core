@@ -1,7 +1,7 @@
 # FrankensteinCore 
 
 ![frankencorem logo](https://github.com/11011010/BFA-Frankenstein-Core/assets/69040574/18f377f8-f910-4486-8d6b-d6e0fd8b4631)
-
+## Someone else is continuing the project, they promised to have things open source later on lets hope they keep that promise.
 
 ## Why FrankensteinCore?
 * OpenSource
@@ -24,8 +24,6 @@ We have joined with a support team to mange the server, the support team and dev
 * By developing directly to the core, the main dev is me and I suck. It will move but slowly.
 * By reporting bugs 
 * By making extra content (video tutorial for example)
-
-If you want to contribute to the project feel free to join us on our Discord server. Your participation in the project will already be a great help. 
 
 *In case we have a active developer agian I could host the server again
 
