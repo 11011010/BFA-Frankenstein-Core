@@ -2,6 +2,7 @@
 
 ![frankencorem logo](https://github.com/11011010/BFA-Frankenstein-Core/assets/69040574/18f377f8-f910-4486-8d6b-d6e0fd8b4631)
 ## Someone else is continuing the project, they promised to have things open source later on lets hope they keep that promise.
+https://github.com/Hextv/BFA-HavenCore is their project.
 
 ## Why FrankensteinCore?
 * OpenSource
